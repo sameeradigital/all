@@ -9,4 +9,4 @@ Allershare application
 - Run MongoDB, and start the server by running `node app.js` in the project root
 
 
-<img src="http://www.alexsb.org/sites/default/files/field/image/meanstack-624x250.jpg" width="200"/>
+<img src="http://pascalprecht.github.io/slides/angularjs-insights/img/angularjs-logo.png" width="300"/>
