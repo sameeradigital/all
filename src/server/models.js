@@ -4,6 +4,12 @@ var bcrypt = require('bcrypt-nodejs');
 
 SALT_WORK_FACTOR = 10;
 
+var NewsAlertSchema = mongoose.Schema({
+    created: { type: Date, required: true },
+	heading: { type: String, required: true },
+	body: { type: String, required: true }
+});
+
 var BaseUserSchema = mongoose.Schema({
 	username: {type: String, required: true},
     password: {type: String, required: true},
@@ -81,6 +87,7 @@ AdminSchema.methods.verifyPassword = verifyPassword;
 UserSchema.methods.verifyPassword = verifyPassword;
 OrganisationSchema.methods.verifyPassword = verifyPassword;
 
+exports.NewsAlert = mongoose.model('NewsAlert', NewsAlertSchema);
 exports.BaseUser = mongoose.model('BaseUser', BaseUserSchema);
 exports.AdminUser = mongoose.model('Admin', AdminSchema);
 exports.Organisation = mongoose.model('Organisation', OrganisationSchema);

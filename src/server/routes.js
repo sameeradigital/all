@@ -162,3 +162,9 @@ exports.getOrganisationProfiles = function(req, resp) {
 		err ? resp.status(500).send(err) : resp.send(data);
 	});
 };
+
+exports.getNewsAlerts = function(req, resp) {
+	models.NewsAlert.find({}, function(err, data) { 
+		err ? resp.status(500).send(err) : resp.send(data);
+	});
+};
