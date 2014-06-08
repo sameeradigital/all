@@ -1,0 +1,599 @@
+<div ng-include="'templates/header.html'"> </div>	
+<div ng-include="'templates/lowerHeader.html'"> </div>
+
+<div id="user_profile">
+    <div id="middle-left">
+    <h3>Robert Azar</h3>
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-1"><img src="images/create_profile.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Profile Details</a></li>
+        <li><a href="#tabs-2"><img src="images/tab 2.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Allergies & Intolerances</a></li>
+        <li><a href="#tabs-3"><img src="images/tab 3.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Dietary Requirements</a></li>
+      </ul>
+      <div id="tabs-1">
+        <section class="register1">
+              <h1></h1>
+              <form method="post" action="#">
+              <div class="reg_section personal_info">
+              <div class="reg">
+              <label>Full Name</label><input type="text" name="fName" value="" placeholder="Full Name"></div>
+              <div class="reg">
+              <label>Address</label><input type="text" name="add" value="" placeholder="Address"></div>
+              <div class="reg">
+              <label>Date Of Birth</label><input type="text" name="dob" value="" id="datepicker-1" placeholder="Date Of Birth"></div>
+
+               
+               <div class="reg">
+              <label>Telephone No.</label><br/><input type="text" name="tel3" value="" placeholder="Telephone No." id="rform">                  <div id="error"></div></div><br/>
+               
+               <div class="reg">
+               <label>Mobile No.</label><br/><input type="text" name="mtel4" value="" placeholder="Mobile No." id="rform">                   <div id="error"></div></div><br/>
+               
+               
+               <div class="reg">
+               <label>E-mail</label><input type="text" name="email" value="" placeholder="E-mail">
+              </div>
+              <div class="reg">
+              <label>Age</label><input type="text" name="age" value="" id="datep" placeholder="Age"></div>
+              <div class="reg">
+              <label>Bloodtype</label><select name="boodtype" id="datep">
+                <option>Null</option>
+                <option>A</option>
+                <option>B</option>
+                <option>AB</option>
+                <option>O</option>
+              </select></div>
+              <div class="reg">
+              <label>Ethnicity</label>
+              <select id="ethnicity" onchange="return ethnicity1();">
+              <option  value="0">Select</option>
+                <option  value="1">White</option>
+                <option  value="2">Mixed / Multiple ethnic groups</option>
+                <option  value="3">Asian / Asian British</option>
+                <option  value="4">Black / African / Caribbean / Black British</option>
+                <option  value="5">Other ethnic group</option>
+                 <option  value="6">Others</option>
+              </select>
+
+
+            <div id="picture_div" style="display: none; margin-left:18%;">
+            
+            </div>
+
+              </div>
+               <script>
+function ethnicity1() {
+var picture_type = document.getElementById('ethnicity').value;
+
+if(picture_type == 1) {
+document.getElementById('picture_div').innerHTML = '<div class="reg1" style="line-height: 10px;"><label style="width:75%;">1. English / Welsh / Scottish / Northern Irish / British </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 15%;margin-left: -13%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">2. Irish </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top:4%;margin-left: -1%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">3. Gypsy or Irish Traveller </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 4%;margin-left: -1%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">4. Any other White background, please describe </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 4%;margin-left: -1%;"/></div>';
+}
+if (picture_type >= 1) {
+    document.getElementById('picture_div').style.display = 'block';
+} 
+
+if(picture_type == 2) {
+document.getElementById('picture_div').innerHTML = '<div class="reg1" style="line-height: 10px;"><label style="width:75%;">5. White and Black Caribbean </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 15%;margin-left: -13%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">6. White and Black African </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top:4%;margin-left: -1%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">7. White and Asian  </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 4%;margin-left: -1%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">8. Any other Mixed / Multiple ethnic background, please describe </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 4%;margin-left: -1%;"/></div>';
+}
+if (picture_type >= 2) {
+    document.getElementById('picture_div').style.display = 'block';
+}
+
+
+if(picture_type == 3) {
+document.getElementById('picture_div').innerHTML = '<div class="reg1" style="line-height: 10px;"><label style="width:75%;">9. Indian </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 15%;margin-left: -13%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">10. Pakistani  </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top:4%;margin-left: -1%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">11. Bangladeshi  </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 4%;margin-left: -1%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">12. Chinese  </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 4%;margin-left: -1%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">13. Any other Asian background, please describe  </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 4%;margin-left: -1%;"/></div>';
+}
+if (picture_type >=3) {
+    document.getElementById('picture_div').style.display = 'block';
+}
+
+if(picture_type == 4) {
+document.getElementById('picture_div').innerHTML = '<div class="reg1" style="line-height: 10px;"><label style="width:75%;">14. African  </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 15%;margin-left: -13%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">15. Caribbean </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top:4%;margin-left: -1%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">16. Any other Black / African / Caribbean background, please describe </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 4%;margin-left: -1%;"/></div>';
+}
+if (picture_type >= 4) {
+    document.getElementById('picture_div').style.display = 'block';
+}
+
+if(picture_type == 5) {
+document.getElementById('picture_div').innerHTML = '<div class="reg1" style="line-height: 10px;"><label style="width:75%;">17. Arab  </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top: 15%;margin-left: -13%;"/></div><div class="reg1"><label style="width:75%;margin-top: -11px;">18. Any other ethnic group </label> <input name="Emergency Contact Details" type="checkbox" style="margin-top:4%;margin-left: -1%;"/></div>';
+}
+if (picture_type >= 5) {
+    document.getElementById('picture_div').style.display = 'block';
+} 
+
+ if (picture_type == 6) {
+    document.getElementById('picture_div').innerHTML = '<input name="url" type="text"/>';
+}
+}
+</script>
+              <div class="reg">
+             <label>NHS Number</label><input type="text" name="NHS_number" value="" placeholder="NHS Number" id="datep">                  </div>
+           <div class="reg">
+             <label>Medical Conditions</label><textarea name="textarea" value="" placeholder="Medical Conditions"></textarea>
+             </div>
+             <div class="reg">
+            <label>Medical Requirements</label><textarea name="textarea" value="" placeholder="Medical Requirements">
+            </textarea></div>
+            <div class="reg">
+              <label>Medical Implants</label><textarea name="textarea" value="" placeholder="Medical Implants"></textarea>
+              </div>
+                                <br/><br/><br/>
+              <h3>&nbsp;</h3>
+              <h3>&nbsp;</h3>
+              <h3>Emergency Contact Details -1</h3>
+               <div class="reg">
+             <label>Same as in User Details</label> <input name="Emergency Contact Details" type="checkbox" style="margin-top:3%;"/></div><br/>
+           <br/>
+              <div class="reg">
+               <label>Name</label><input type="text" name="Name5" value="" placeholder="Name"><div id="error"></div>
+               </div><br/>
+               
+               <div class="reg">
+               <label>Address</label><input type="text" name="add6" value="" placeholder="Address"><div id="error"></div>
+               </div><br/>
+               
+               <div class="reg">
+               <label>Telephone No.</label><br/><input type="text" name="tel7" value="" placeholder="Telephone No." id="rform"><div id="error"></div></div><br/>
+               
+               <div class="reg">
+               <label>Mobile No.</label><br/><input type="text" name="mtel8" value="" placeholder="Mobile No." id="rform"><div id="error"></div></div><br/>
+               
+               <div class="reg">
+               <label>E-mail</label><input type="text" name="email9" value="" placeholder="E-mail">
+              </div>
+              <br/><br/><br/>
+              
+              <h3>&nbsp;</h3>
+              <h3>&nbsp;</h3>
+              <h3>Emergency Contact Details -2</h3>
+               <div class="reg">
+               <label>Name</label><input type="text" name="Name1" value="" placeholder="Name"><div id="error"></div>
+               </div>
+               <br/>
+               
+               <div class="reg">
+               <label>Address</label><input type="text" name="add2" value="" placeholder="Address"><div id="error"></div>
+               </div><br/>
+               
+               <div class="reg">
+              <label>Telephone No.</label><br/><input type="text" name="tel3" value="" placeholder="Telephone No." id="rform">                  <div id="error"></div></div><br/>
+               
+               <div class="reg">
+               <label>Mobile No.</label><br/><input type="text" name="mtel4" value="" placeholder="Mobile No." id="rform">                   <div id="error"></div></div><br/>
+               
+               
+               <div class="reg">
+               <label>E-mail</label><input type="text" name="email" value="" placeholder="E-mail">
+              </div>
+              </div>
+              <div class="clear"></div>
+             <p class="submit">
+               <a href=""><input type="button" name="" value="Next" class="button"/></a>
+              </p>
+               <p class="submit">&nbsp;</p>
+              </form>
+            </section>
+      </div>
+      <div id="tabs-2">
+        <section class="register2">
+              <h3>Food Allergies</h3>
+              <form method="post" action="registration.php">
+              <div class="reg_section personal_info">
+              <div class="reg">
+              <label> <input type="checkbox" name="r1" id="r1"> Cereals containing gluten and products</label></div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r2" id="r2"> Shellfish or Crustaceans and products</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r3" id="r3"> Egg and products</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r4" id="r4"> Fish / Seafood and products</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r5" id="r5"> Milk and products</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r6" id="r6"> Nuts and products</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r7" id="r7"> Celery and products</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r8" id="r8"> Mustard and products</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r9" id="r9"> Sesame and products</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r10" id="r10"> Sulphur Dioxide & Sulphites</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r11" id="r11"> Lupin and products</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r12" id="r12"> Molluscs and products</label> </div>
+              
+               <div class="clear"></div><br/>
+              <h3>Others</h3><br/>
+              <div class="reg">
+              <label> <input type="checkbox" name="r13" id="r13"> Fruit or Vegetables</label> </div>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r14" id="r14"> Oral Allergy Syndrome or Pollen Food Syndrome</label> </div>                  
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="r15" id="r15"> Alcohol Allergy</label> </div>
+              
+               <div class="clear"></div><br/>
+              <h3>Food Intolerances</h3><br/>
+                <div class="reg">
+                <label> <input type="checkbox" name="r16" id="r16"> Beef/ Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r17" id="r17"> Chicken/ Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r18" id="r18"> Lamb/ Mutton/ Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r19" id="r19"> Pork/ Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r20" id="r20"> Other Animal Products/ Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r21" id="r21"> Rennet</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r22" id="r22"> Gelatin</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r23" id="r23"> Oils of Seafood</label> </div>
+                
+                 <div class="clear"></div><br/>
+                 <h3>Other Nuts/Seeds</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r24" id="r24"> Nut oils/ Derivatives</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r25" id="r25"> Seeds and Seed Products</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r26" id="r26"> Seed Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r27" id="r27"> Seed oil/ other Vegetable oils</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r28" id="r28"> Coconuts/ derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r29" id="r29"> Poppy Seeds</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r30" id="r30"> Cotton Seeds</label> </div>
+                 <div class="clear"></div><br/>
+                <h3>Botanical</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r31" id="r31"> Garlic/ Derivatives</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r32" id="r32"> Onion/ Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r33" id="r33"> Cinnamon/ Extract</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r34" id="r34"> Umbelliferae/Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r35" id="r35"> Vegetables/ Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r36" id="r36"> Fruit/ Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r37" id="r37"> Cocoa/ Derivatives</label> </div>
+                
+                <div class="reg">
+                 <label> <input type="checkbox" name="r38" id="r38"> Potato/ Derivatives</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r39" id="r39"> Maize/ Derivatives</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r40" id="r40"> Leguminous Plants / pulses</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r41" id="r41"> Coriander</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r42" id="r42"> Vanilla</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r43" id="r43"> Mushroom</label> </div>
+                 <div class="clear"></div><br/>
+                 <h3>Flavourings</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r44" id="r44"> Natural flavouring Substances</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r45" id="r45"> Nature Identical Flavouring Substances</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r46" id="r46"> Artificial Flavouring Substances</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r47" id="r47"> Flavouring Preparations</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r48" id="r48"> Smoke Flavourings</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r49" id="r49"> Process Flavourings</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r50" id="r50"> Di-Acetyl</label> </div>
+                
+                <div class="reg">
+                 <label> <input type="checkbox" name="r51" id="r51"> MSG (Monosodium glutamate) and other glutamates</label>                      </div>
+                <div class="reg"> 
+                <label> <input type="checkbox" name="r52" id="r52"> Biologically Active Principals</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r53" id="r53"> Naturally occurring glutamates</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r54" id="r54"> Nucleotides E627, E631, E635</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r55" id="r55"> Yeast/Extract</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r56" id="r56"> HVP (Hydrolysed vegetable protein)</label> </div>
+                
+                <div class="reg">
+                 <label> <input type="checkbox" name="r57" id="r57"> TVP (Texturised vegetable protein)</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r58" id="r58"> Other added Flavour Enhancers (inc. guanylate, etc.)
+                </label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r59" id="r59"> Alcohols</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r60" id="r60"> Organic Acids</label> </div>
+                
+                <div class="reg">
+                 <label> <input type="checkbox" name="r61" id="r61"> Caffeine</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r62" id="r62"> Quinine</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r63" id="r63"> Malt Extract</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r64" id="r64"> Emulsifiers</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r65" id="r65"> Maltodextrin</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r66" id="r66"> Enzymes (including those used during processing)</label>                      </div>
+                 <div class="clear"></div><br/>
+                 <h3>Colours</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r67" id="r67">Natural colours</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r68" id="r68">Artificial colours</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r69" id="r69">Artificial Colour from Azo Dyes</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r70" id="r70">Caramel</label> </div>
+                
+                 <div class="clear"></div><br/>
+                 <h3>Preservatives and Antioxidants</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r71" id="r71">Sulphites</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r72" id="r72">Sulphur Dioxide</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r73" id="r73">Ethylene Oxide</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r74" id="r74">Benzoates</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r75" id="r75">Nitrites and Nitrates</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r76" id="r76">Sorbates</label> </div>
+                
+                <div class="reg">
+                 <label> <input type="checkbox" name="r77" id="r77">Other Artificial Preservatives5</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r78" id="r78">BHA (Butylated hydroxytoluene)</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r79" id="r79">BHT (Butylated hydroxyanisole)</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r80" id="r80">Other Antioxidants</label> </div>
+                
+                 <div class="clear"></div><br/>
+                 <h3>Sugars and Sweeteners</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r81" id="r81">Added Sugar</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r82" id="r82">Aspartame</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r83" id="r83">Other Artificial Sweeteners</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r84" id="r84">Dextrose</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r85" id="r85">Fructose</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r86" id="r86">Glucose</label> </div>
+                
+                <div class="reg">
+                 <label> <input type="checkbox" name="r87" id="r87">Polyols</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r88" id="r88">Sucrose</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r89" id="r89">Honey</label> </div>
+                
+                 <div class="clear"></div><br/>
+                 <h3>Food Intolerances</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r90" id="r90">Allergic rhinitis (hay fever) which affects the nose and                       eyes</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r91" id="r91">Asthma which affects the lung</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r92" id="r92">Other Artificial Sweeteners</label> </div>
+               
+                <div class="reg">
+                <label> <input type="checkbox" name="r93" id="r93">Eczema or urticaria (hives) which affect the skin
+                </label> </div>
+                
+                 <div class="clear"></div><br/>
+                <h3>Skin Allergies</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r94" id="r94">Atopic Eczema</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r94" id="r94">Rubber Latex</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r95" id="r95">Cosmetics</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r96" id="r96">Hair Dye</label> </div>
+                
+                 <div class="clear"></div><br/>
+                <h3>Animal & Insect Allergies</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r97" id="r97">Dog</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r98" id="r98">Cat</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r99" id="r99">Insect Stings</label> </div>
+                
+                 <div class="clear"></div><br/>
+                  <h3>Drug Allergies</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r100" id="r100">Aspirin (Salicylate)</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r101" id="r101">Penicillin</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r102" id="r102">Manual Text Field</label> </div>
+                
+                 <div class="clear"></div><br/>
+                 <h3>Chemical Allergies</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r103" id="r103">Manual text Field</label> </div>
+                 
+                  <div class="clear"></div><br/>
+                  <h3>Drug Allergies</h3><br/>
+                <div class="reg">
+                 <label> <input type="checkbox" name="r104" id="r104">Allergic Conjunctivitis (Pink Eye)</label> </div>
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r105" id="r105">Poison Ivy</label> </div>
+                
+                <div class="reg">
+                <label> <input type="checkbox" name="r106" id="r106">Poison Oak</label> </div>
+                
+                <div class="reg">
+                 <label> <input type="checkbox" name="r107" id="r107">Poison Sumac</label> </div>
+                
+                 
+                 <div class="reg">
+                <label> <input type="checkbox" name="r108" id="r108">Dust</label></div>
+                
+                
+              </div>
+              <div class="clear"></div>
+              
+              <p class="submit">
+               
+               <a href=""><input type="button" name="" value="Next" class="button"/></a>
+               
+              </p>
+               <p class="submit">&nbsp;</p>
+              </form>
+            </section>
+      </div>
+      <div id="tabs-3">
+        <section class="register2">
+              <h1></h1>
+              <form method="post" action="registration.php">
+              <div class="reg_section personal_info">
+              
+              <div class="reg">
+              <label><input type="checkbox" name="Vegetarians" id="Vegetarians">Vegetarians</label>
+              </div><br/>
+              <div class="reg">
+              <label> <input type="checkbox" name="Vegans" id="Vegans"> Vegans</label>
+              </div><br/>
+              
+              <div class="reg">
+              <label> <input type="checkbox" name="Diabetics" id="Diabetics"> Diabetics</label>
+              </div><br/>
+              <div class="reg">
+              <label> <input type="checkbox" name="Kosher Diet" id="Kosher Diet"> Kosher Diet</label>
+              </div><br/>
+             <div class="reg">
+              <label> <input type="checkbox" name="Halal_diet" id="Halal_diet"> Halal_diet</label>
+              </div><br/>
+              <div class="reg">
+              <label> <input type="checkbox" name="Coeliacs" id="Coeliacs"> Coeliacs</label></div><br/>
+              </div>
+              <div class="clear"></div>
+              <p class="submit">
+            
+            
+               <a href=""><input type="button" name="" value="Next" class="button"/></a>
+               
+              </p>
+               <p class="submit">&nbsp;</p>
+              </form>
+            </section>
+      </div>
+     
+    </div><!--end tebs-->
+        <div class="clear"></div>       
+    </div>
+    <div id="middle-right">
+    </div>
+    <div class="clear"></div>
+    
+    </div><!--end recoardtable-->
+    <div class="clear"></div>
+</div>
+    </div>
+</div>
+
+<div ng-include="'templates/footer.html'"> </div>

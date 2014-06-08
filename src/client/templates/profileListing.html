@@ -1,7 +1,7 @@
 <div ng-include="'templates/header.html'"> </div>	
 <div ng-include="'templates/lowerHeader.html'"> </div>
   
-<div id="user_interface">
+<div id="user_interface" ng-controller="ProfileListingController">
  <section class="register">
  <h2>Profile Listing</h2><br/><br/>
     <form id="form1" name="form1" method="post" action="">
@@ -12,7 +12,6 @@
           <td width="42%" style="text-align:left;"><h4>Address</h4></td>
           <td width="9%">&nbsp;</td>
           <td width="9%"></td>
-         
       </tr>
        <tr>
           <td colspan="6">&nbsp;</td>
@@ -24,8 +23,8 @@
           <td> <p class="submit">
                 <a href="view.php"><input type="button" name="" value="View" class="button1"/></a></p></td>
                <td width="9%"><p class="submit">
-               <a href=""><input type="button" name="" value="Delete" class="button1" /></a></p>  </td>
-              
+               <a href=""><input type="button" name="" value="Delete" class="button1" /></a></p>  
+          </td>
       </tr>
       <tr>
           <td style="text-align:left;">AL123457</td>
@@ -39,9 +38,10 @@
       </tr>
     </table>
   </form>
-  <br/><br/>
+  <br/>
+  <br/>
       <p class="submit">
-          <a href="create_profile.html"><input type="button" name="" value="Create a Profile" class="button"/></a>
+          <a><input type="button" name="" value="Create a Profile" class="button" ng-click="createProfile()"/></a>
       </p>
      <div class="clear"></div>
   </section>

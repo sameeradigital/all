@@ -19,7 +19,7 @@ app.post('/api/users/', routes.postUser);
 app.get('/api/users/:userId/', security.authUser, routes.getUser);
 app.put('/api/users/:userId/', security.authUser, routes.putUser);
 app.del('/api/users/:userId/', security.authUser, routes.deleteUser);
-app.get('/api/users/:userId/profiles', security.authUser, routes.getUserProfiles);
+app.get('/api/users/:userId/profiles/', security.authUser, routes.getUserProfiles);
 app.post('/api/users/:userId/profiles/', security.authUser, routes.postProfile);
 app.get('/api/users/:userId/profiles/:profileId', security.authUser, routes.getUserProfile);
 app.put('/api/users/:userId/profiles/:profileId', security.authUser, routes.putUserProfile);

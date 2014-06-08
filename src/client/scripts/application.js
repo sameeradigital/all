@@ -13,10 +13,75 @@ allershare.config(function($routeProvider) {
         templateUrl: 'templates/contact.html',
     }).when('/profileListing', {
         templateUrl: 'templates/profileListing.html',
+    }).when('/createProfile', {
+        templateUrl: 'templates/createProfile.html',
     });
 });
 
-allershare.controller('SignUpController', function($scope, $http) {
+allershare.service('UserService', function($http) {
+    var self = this;
+    
+    this.userData = null;
+    this.userProfiles = null;
+    this.isLoggedIn = false;
+    
+    this.signUp = function(data, cb) {
+        if (!data.username) { cb(false, "Username is required"); }
+        else if (!data.email) { cb(false, "Email is required"); }
+        else if (!data.password) { cb(false, "Password is required"); }
+        else if (!data.confirmPassword) { cb(false, "Confirm password required"); }
+        else if (data.password !== data.confirmPassword) { cb(false, "Passwords do not match"); }
+        else {
+            $http.post('/api/users/', {
+                username: data.username, 
+                email: data.email,
+                password: data.password 
+            }).success(function(data) {
+                cb(true);
+            }).error(function(data) {
+                cb(false, data);
+            });
+        }
+    };
+    
+    this.login = function(data, cb) {
+        if (!data.username) { cb(false, "Username is required"); }
+        else if (!data.password) { cb(false, "password is required"); }
+        else {
+            $http.post('/api/sessions/', {
+                username: data.username, 
+                password: data.password 
+            }).success(function(data) {
+                self.userData = data;
+                self.isLoggedIn = true;
+                cb(true);
+            }).error(function(data) {
+                cb(false, data);
+            });
+        }
+    };
+    
+    this.getProfiles = function(cb) {
+        $http.get('/api/users/' + self.userData._id + '/profiles/').success(function(data) {
+            self.userProfiles = data;
+            cb(true);
+        }).error(function(data) {
+            cb(false, data);
+        });
+    };
+    
+    this.postProfile = function(data, cb) {
+    
+    };
+    
+    this.deleteProfile = function(data, cb) {
+    
+    };
+    
+    return this;
+});
+
+allershare.controller('SignUpController', function($scope, UserService) {
     $scope.username = null;
     $scope.email = null;
     $scope.password = null;
@@ -24,81 +89,45 @@ allershare.controller('SignUpController', function($scope, $http) {
     $scope.statusMessage = null;
     $scope.isEnabled = true;
     
-    $scope.validate = function() {
-        $scope.statusMessage = null;
-        if (!$scope.username) {
-            $scope.statusMessage = "Username is required";
-            return false;
-        }
-        else if (!$scope.email) {
-            $scope.statusMessage = "Email is required";
-            return false;
-        }
-        else if (!$scope.password) {
-            $scope.statusMessage = "Password is required";
-            return false;
-        }
-        else if (!$scope.confirmPassword) {
-            $scope.statusMessage = "Confirm password required";
-            return false;
-        }
-        else if ($scope.password !== $scope.confirmPassword) {
-            $scope.statusMessage = "Passwords do not match";
-            return false;
-        }
-        return true;
-    };
-    
     $scope.signUp = function() {
-        if ($scope.validate()) {
-            $scope.isEnabled = false;
-            $http.post('/api/users/', {
-                username: $scope.username, 
-                email: $scope.email,
-                password: $scope.password 
-            }).success(function(data) {
-                $scope.isEnabled = true;
-                $scope.statusMessage = "Success!";
-            }).error(function(data) {
-                $scope.isEnabled = true;
-                $scope.statusMessage = data;
-            });
-        }
+        $scope.isEnabled = false;
+        UserService.signUp({
+            username: $scope.username, 
+            email: $scope.email,
+            password: $scope.password,
+            confirmPassword: $scope.confirmPassword
+        }, function(isSuccess, responseMessage) {
+            $scope.isEnabled = true;
+            $scope.statusMessage = responseMessage;
+        });
     };
 });
 
-allershare.controller('LoginController', function($scope, $http, $location) {
+allershare.controller('LoginController', function($scope, $location, UserService) {
     $scope.username = "";
     $scope.password = "";
     $scope.statusMessage = null;
     $scope.isEnabled = true;
     
-    $scope.validate = function() {
-        $scope.statusMessage = null;
-        if (!$scope.username) {
-            $scope.statusMessage = "Username is required";
-            return false;
-        }
-        else if (!$scope.password) {
-            $scope.statusMessage = "password is required";
-            return false;
-        };
-        return true;
-    };
-    
     $scope.login = function() {
-        if ($scope.validate()) {
-            $scope.isEnabled = false;
-            $http.post('/api/sessions/', {
-                username: $scope.username, 
-                password: $scope.password 
-            }).success(function(data) {
-                $scope.isEnabled = true;
+        $scope.isEnabled = false;
+        UserService.login({
+            username: $scope.username,
+            password: $scope.password
+        }, function(isSuccess, responseMessage) {
+            isEnabled = true;
+            $scope.statusMessage
+            if (isSuccess) {
                 $location.path('/profileListing');
-            }).error(function(data) {
-                $scope.isEnabled = true;
-                $scope.statusMessage = data;
-            });
-        }
+            }
+        });
+    };
+});
+
+allershare.controller('ProfileListingController', function($scope, $location, UserService) {
+    $scope.isEnabled = true;
+
+    $scope.createProfile = function() {
+        $location.path('/createProfile');
     };
 });
