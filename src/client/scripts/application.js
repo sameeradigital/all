@@ -74,8 +74,12 @@ allershare.service('UserService', function($http) {
     
     };
     
-    this.deleteProfile = function(data, cb) {
-    
+    this.deleteProfile = function(profileId, cb) {
+        $http.delete('/api/users/' + self.userData + '/profiles/' + profileId).success(function(data) {
+            cb(true);
+        }).error(function(data) {
+            cb(true, data);
+        });
     };
     
     return this;
@@ -126,8 +130,30 @@ allershare.controller('LoginController', function($scope, $location, UserService
 
 allershare.controller('ProfileListingController', function($scope, $location, UserService) {
     $scope.isEnabled = true;
+    $scope.profiles = null;
+    
+    $scope.loadUserProfiles = function() {
+        $scope.isEnabled = false;
+        UserService.getProfiles(function(isSuccess, responseMessage) {
+            $scope.profiles = UserService.userProfiles;
+        });
+    };
+    
+    $scope.deleteProfile = function(profile) {
+        $scope.isEnabled = false;
+        UserService.deleteProfile(profile._id, function(isSuccess, responseMessage) {
+            $scope.isEnabled = true;
+            if (isSuccess) {
+                UserService.userProfiles.splice(UserService.indexof(profile), 1);
+            }
+        });
+    };
 
     $scope.createProfile = function() {
         $location.path('/createProfile');
     };
+});
+
+allershare.controller('CreateProfileController', function($scope, $location, UserService) {
+    
 });
