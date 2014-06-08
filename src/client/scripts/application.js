@@ -20,19 +20,50 @@ allershare.controller('SignUpController', function($scope, $http) {
     $scope.username = null;
     $scope.email = null;
     $scope.password = null;
+    $scope.confirmPassword = null;
     $scope.statusMessage = null;
     $scope.isEnabled = true;
     
+    $scope.validate = function() {
+        $scope.statusMessage = null;
+        if (!$scope.username) {
+            $scope.statusMessage = "Username is required";
+            return false;
+        }
+        else if (!$scope.email) {
+            $scope.statusMessage = "Email is required";
+            return false;
+        }
+        else if (!$scope.password) {
+            $scope.statusMessage = "Password is required";
+            return false;
+        }
+        else if (!$scope.confirmPassword) {
+            $scope.statusMessage = "Confirm password required";
+            return false;
+        }
+        else if ($scope.password !== $scope.confirmPassword) {
+            $scope.statusMessage = "Passwords do not match";
+            return false;
+        }
+        return true;
+    };
+    
     $scope.signUp = function() {
-        $http.post('/api/users/', {
-            username: $scope.username, 
-            email: $scope.email,
-            password: $scope.password 
-        }).success(function(data) {
-            
-        }).error(function(data) {
-        
-        });
+        if ($scope.validate()) {
+            $scope.isEnabled = false;
+            $http.post('/api/users/', {
+                username: $scope.username, 
+                email: $scope.email,
+                password: $scope.password 
+            }).success(function(data) {
+                $scope.isEnabled = true;
+                $scope.statusMessage = "Success!";
+            }).error(function(data) {
+                $scope.isEnabled = true;
+                $scope.statusMessage = data;
+            });
+        }
     };
 });
 
@@ -42,17 +73,32 @@ allershare.controller('LoginController', function($scope, $http, $location) {
     $scope.statusMessage = null;
     $scope.isEnabled = true;
     
+    $scope.validate = function() {
+        $scope.statusMessage = null;
+        if (!$scope.username) {
+            $scope.statusMessage = "Username is required";
+            return false;
+        }
+        else if (!$scope.password) {
+            $scope.statusMessage = "password is required";
+            return false;
+        };
+        return true;
+    };
+    
     $scope.login = function() {
-        $scope.isEnabled = false;
-        $http.post('/api/sessions/', {
-            username: $scope.username, 
-            password: $scope.password 
-        }).success(function(data) {
-            $scope.isEnabled = true;
-            $location.path('/readerApp');
-        }).error(function(data) {
-            $scope.isEnabled = true;
-            $scope.statusMessage = data;
-        });
+        if ($scope.validate()) {
+            $scope.isEnabled = false;
+            $http.post('/api/sessions/', {
+                username: $scope.username, 
+                password: $scope.password 
+            }).success(function(data) {
+                $scope.isEnabled = true;
+                $location.path('/profileListing');
+            }).error(function(data) {
+                $scope.isEnabled = true;
+                $scope.statusMessage = data;
+            });
+        }
     };
 });

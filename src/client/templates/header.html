@@ -15,7 +15,8 @@
             </div>
         </div>
         <div id="topRightLogin">
-            <div id="login" class="section">
+            <div id="login" class="section" ng-controller="LoginController">
+                {{ statusMessage }}
                 <form class="Fields">
                   <ul>  
                     <li class="UserName">
@@ -27,7 +28,7 @@
                         <input id="password" class="Value" type = "password" placeholder="Password" ng-model="password"/>
                     </li>
                     <li class="Login">
-                      <input class="Login" type="button" value="Sign in" ng-click="loginUser()"/>
+                      <input class="Login" type="button" value="Sign in" ng-click="login()"/>
                     </li>
                 </ul>
                 </form>

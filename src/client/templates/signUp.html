@@ -1,17 +1,19 @@
-<div id="middle-right">
+<div id="middle-right" ng-controller="SignUpController"> 
     <div class="container">
         <section class="register">
             <h1>Join today!</h1>
-            <form method="post" action="index.html">
+            <form ng-submit="signUp()">
                 <div class="reg_section personal_info">
-                    <input type="text" name="username" value="" placeholder="Username" id="foo">
-                    <input type="text" name="email" value="" placeholder="E-mail" id="foo1">
-                    <input type="password" name="password" value="" placeholder="Password" id="foo">
-                    <input type="password" name="confirm" value="" placeholder="Confirm Password" id="foo">
+                    <input type="text" name="username" value="" placeholder="Username" id="foo" ng-model="username">
+                    <input type="text" name="email" value="" placeholder="E-mail" id="foo1" ng-model="email">
+                    <input type="password" name="password" value="" placeholder="Password" id="foo" ng-model="password">
+                    <input type="password" name="confirm" value="" placeholder="Confirm Password" id="foo" ng-model="confirmPassword">
                 </div>
-                <p class="submit"><input type="submit" name="commit" value="Sign Up"></p>
+                <div>
+                    {{ statusMessage }}
+                    <p class="submit"><input type="submit" value="Sign Up"></p>
+                </div>
             </form>
         </section>
-        <div class="csspinner traditional"/>
     </div>
 </div>
