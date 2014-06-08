@@ -10,22 +10,7 @@
         <p>In addition to allergy data, food intolerances and dietary requirements can also be shared to give you the confidence that the organisations you are linked too are fully aware of your requirements at all times.</p>            
     </div>
     
-    <div id="middle-right">
-        <div class="container">
-            <section class="register">
-                <h1>Join today!</h1>
-                <form method="post" action="index.html">
-                    <div class="reg_section personal_info">
-                        <input type="text" name="username" value="" placeholder="Username" id="foo">
-                        <input type="text" name="email" value="" placeholder="E-mail" id="foo1">
-                        <input type="password" name="password" value="" placeholder="Password" id="foo">
-                        <input type="password" name="confirm" value="" placeholder="Confirm Password" id="foo">
-                    </div>
-                    <p class="submit"><input type="submit" name="commit" value="Sign Up"></p>
-                </form>
-            </section>
-        </div>
-    </div>
+    <div ng-include="'templates/signUp.html'"> </div>
     
     <div class="clear"></div>
 </div>

@@ -3,38 +3,56 @@ var allershare = angular.module('allershare', ['ngRoute']);
 allershare.config(function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'templates/homePage.html',
-        controller: 'HomePageController'
     }).when('/facts', {
         templateUrl: 'templates/facts.html',
-        controller: 'FactsController'
     }).when('/faq', {
         templateUrl: 'templates/faq.html',
-        controller: 'FaqController'
     }).when('/newsAlerts', {
         templateUrl: 'templates/newsAlerts.html',
-        controller: 'NewsAlertsController'
     }).when('/contact', {
         templateUrl: 'templates/contact.html',
-        controller: 'ContactController'
+    }).when('/profileListing', {
+        templateUrl: 'templates/profileListing.html',
     });
 });
 
-allershare.controller('HomePageController', function($scope, $http) {
-
+allershare.controller('SignUpController', function($scope, $http) {
+    $scope.username = null;
+    $scope.email = null;
+    $scope.password = null;
+    $scope.statusMessage = null;
+    $scope.isEnabled = true;
+    
+    $scope.signUp = function() {
+        $http.post('/api/users/', {
+            username: $scope.username, 
+            email: $scope.email,
+            password: $scope.password 
+        }).success(function(data) {
+            
+        }).error(function(data) {
+        
+        });
+    };
 });
 
-allershare.controller('FactsController', function($scope, $http) {
+allershare.controller('LoginController', function($scope, $http, $location) {
+    $scope.username = "";
+    $scope.password = "";
+    $scope.statusMessage = null;
+    $scope.isEnabled = true;
     
-});
-
-allershare.controller('FaqController', function($scope, $http) {
-    
-});
-
-allershare.controller('NewsAlertsController', function($scope, $http) {
-    
-});
-
-allershare.controller('ContactController', function($scope, $http) {
-    
+    $scope.login = function() {
+        $scope.isEnabled = false;
+        $http.post('/api/sessions/', {
+            username: $scope.username, 
+            password: $scope.password 
+        }).success(function(data) {
+            $scope.isEnabled = true;
+            $location.path('/readerApp');
+        }).error(function(data) {
+            $scope.isEnabled = true;
+            $scope.statusMessage = data;
+        });
+    };
 });
