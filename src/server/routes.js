@@ -17,7 +17,7 @@ var objIdOr404 = function(idStr, resp) {
 }
 
 exports.postSession = function(req, resp) {
-	resp.status(201).send();
+	resp.status(201).send(req.user);
 };
 
 exports.getUsers = function(req, resp) {
@@ -27,22 +27,26 @@ exports.getUsers = function(req, resp) {
 };
 
 exports.postUser = function(req, resp) {
-	models.BaseUser.findOne({username: req.body.username}, function(err, data) {
-        if (err) {
-            resp.status(500).send(err);
-        }
-        else {
-            if (data === null) {
-                var user = new models.User(req.body);
-                user.save(function(err, result) {
-                    err ? resp.status(500).send(err) : resp.status(201).send(result);
-                });
+    if (req.body.user) {
+        models.BaseUser.findOne({username: req.body.user.username}, function(err, data) {
+            if (err) {
+                resp.status(500).send(err);
             }
             else {
-                resp.status(409).send("Username already exists");
+                if (data === null) {
+                    models.User.create(req.body.user, function(err, result) {
+                        err ? resp.status(500).send(err) : resp.status(201).send(result);
+                    });
+                }
+                else {
+                    resp.status(409).send("Username already exists");
+                }
             }
-        }
-	});
+        });
+    }
+    else {
+        resp.status(401).send("user object required");
+    }
 };
 
 exports.getUser = function(req, resp) {
@@ -75,22 +79,23 @@ exports.getUserProfiles = function(req, resp) {
 
 exports.postProfile = function(req, resp) {
     var userId = objIdOr404(req.params.userId, resp);
-    models.BaseUser.findOne({_id: userId, _type: 'User'}, function(err, data) {
-        if (err) {
-            resp.status(500).send(err);
-        }
-        else if (data === null) {
-            resp.status(404).send();
-        }
-        else {
-            var profile = new models.Profile(req.body);
-            profile.owner = data._id;
-            profile.save(function(err, result) {
-                err ? resp.status(500).send(err) : resp.send(result);
-            });
-        }
-    });
-    var profile = new models.Profile(req.body);
+    if (userId !== null) {
+        models.BaseUser.findOne({_id: userId, _type: 'User'}, function(err, data) {
+            if (err) {
+                resp.status(500).send(err);
+            }
+            else if (data === null) {
+                resp.status(404).send();
+            }
+            else {
+                var profile = new models.Profile(req.body.profile);
+                profile.owner = data._id;
+                profile.save(function(err, result) {
+                    err ? resp.status(500).send(err) : resp.send(result);
+                });
+            }
+        });
+    }
 };
 
 exports.getUserProfile = function(req, resp) {

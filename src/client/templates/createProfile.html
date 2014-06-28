@@ -1,13 +1,14 @@
 <div ng-include="'templates/header.html'"> </div>
 <div ng-include="'templates/lowerHeader.html'"> </div>
-<div id="user_profile">
+
+<div id="user_profile" ng-controller="CreateProfileController">
     <div id="middle-left">
-        <h3>Robert Azar</h3>
+        <h3>robert azar</h3>
         <div id="tabs">
             <ul>
-                <li><a href="#tabs-1"><img src="images/create_profile.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Profile Details</a></li>
-                <li><a href="#tabs-2"><img src="images/tab 2.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Allergies & Intolerances</a></li>
-                <li><a href="#tabs-3"><img src="images/tab 3.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Dietary Requirements</a></li>
+                <li><a><img src="images/create_profile.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />profile details</a></li>
+                <li><a><img src="images/tab 2.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />allergies & intolerances</a></li>
+                <li><a><img src="images/tab 3.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />dietary requirements</a></li>
             </ul>
             <div id="tabs-1">
                 <section class="register1">
@@ -15,530 +16,497 @@
                     <form method="post" action="#">
                         <div class="reg_section personal_info">
                             <div class="reg">
-                                <label>Full Name</label><input type="text" name="fName" value="" placeholder="Full Name">
+                                <label>full name</label><input type="text" name="fname" value="" placeholder="full name" ng-model="profile.details.name">
                             </div>
                             <div class="reg">
-                                <label>Address</label><input type="text" name="add" value="" placeholder="Address">
+                                <label>address</label><input type="text" name="add" value="" placeholder="address" ng-model="profile.details.address">
                             </div>
                             <div class="reg">
-                                <label>Date Of Birth</label><input type="text" name="dob" value="" id="datepicker-1" placeholder="Date Of Birth">
+                                <label>date of birth</label><input type="text" name="dob" value="" id="datepicker-1" placeholder="date of birth" ng-model="profile.details.dateOfBirth">
                             </div>
                             <div class="reg">
-                                <label>Telephone No.</label><br/><input type="text" name="tel3" value="" placeholder="Telephone No." id="rform">                  
+                                <label>telephone no.</label><br/><input type="text" name="tel3" value="" placeholder="telephone no." id="rform" ng-model="profile.details.telephone">                  
                                 <div id="error"></div>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label>Mobile No.</label><br/><input type="text" name="mtel4" value="" placeholder="Mobile No." id="rform">                   
+                                <label>mobile no.</label><br/><input type="text" name="mtel4" value="" placeholder="mobile no." id="rform" ng-model="profile.details.mobile">                   
                                 <div id="error"></div>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label>E-mail</label><input type="text" name="email" value="" placeholder="E-mail">
+                                <label>e-mail</label><input type="text" name="email" value="" placeholder="e-mail" ng-model="profile.details.email">
                             </div>
                             <div class="reg">
-                                <label>Age</label><input type="text" name="age" value="" id="datep" placeholder="Age">
+                                <label>bloodtype</label>
+                                <select name="boodtype" id="datep" ng-options="bloodType for bloodType in bloodTypes" ng-model="profile.details.bloodType"></select>
                             </div>
                             <div class="reg">
-                                <label>Bloodtype</label>
-                                <select name="boodtype" id="datep">
-                                    <option>Null</option>
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>AB</option>
-                                    <option>O</option>
-                                </select>
+                                <label>ethnicity</label>
+                                <select ng-options="ethnicity for ethnicity in ethnicities" ng-model="profile.details.ethnicity"></select>
                             </div>
                             <div class="reg">
-                                <label>Ethnicity</label>
-                                <select id="ethnicity" onchange="return ethnicity1();">
-                                    <option  value="0">Select</option>
-                                    <option  value="1">White</option>
-                                    <option  value="2">Mixed / Multiple ethnic groups</option>
-                                    <option  value="3">Asian / Asian British</option>
-                                    <option  value="4">Black / African / Caribbean / Black British</option>
-                                    <option  value="5">Other ethnic group</option>
-                                    <option  value="6">Others</option>
-                                </select>
-                                <div id="picture_div" style="display: none; margin-left:18%;">
-                                </div>
+                                <label>nhs number</label><input type="text" name="nhs_number" value="" placeholder="nhs number" id="datep" ng-model="profile.details.nhsNumber">                  
                             </div>
                             <div class="reg">
-                                <label>NHS Number</label><input type="text" name="NHS_number" value="" placeholder="NHS Number" id="datep">                  
+                                <label>medical conditions</label><textarea name="textarea" value="" placeholder="medical conditions" ng-model="profile.details.medicalConditions"></textarea>
                             </div>
                             <div class="reg">
-                                <label>Medical Conditions</label><textarea name="textarea" value="" placeholder="Medical Conditions"></textarea>
-                            </div>
-                            <div class="reg">
-                                <label>Medical Requirements</label><textarea name="textarea" value="" placeholder="Medical Requirements">
+                                <label>medical requirements</label><textarea name="textarea" value="" placeholder="medical requirements" ng-model="profile.details.medicalRequirements">
                                 </textarea>
                             </div>
                             <div class="reg">
-                                <label>Medical Implants</label><textarea name="textarea" value="" placeholder="Medical Implants"></textarea>
+                                <label>medical implants</label><textarea name="textarea" value="" placeholder="medical implants" ng-model="profile.details.medicalImplants"></textarea>
                             </div>
                             <br/><br/><br/>
                             <h3>&nbsp;</h3>
                             <h3>&nbsp;</h3>
-                            <h3>Emergency Contact Details -1</h3>
+                            <h3>emergency contact details -1</h3>
                             <div class="reg">
-                                <label>Same as in User Details</label> <input name="Emergency Contact Details" type="checkbox" style="margin-top:3%;"/>
+                                <label>same as in user details</label> <input name="emergency contact details" type="checkbox" style="margin-top:3%;" ng-model="areContactDetails1SameAsUser"/>
                             </div>
                             <br/>
                             <br/>
-                            <div class="reg">
-                                <label>Name</label><input type="text" name="Name5" value="" placeholder="Name">
-                                <div id="error"></div>
+                             <div ng-hide="areContactDetails1SameAsUser">
+                                <div class="reg">
+                                    <label>name</label><input type="text" name="name5" value="" placeholder="name" ng-model="profile.details.emergencyContactDetails1.name">
+                                    <div id="error"></div>
+                                </div>
+                                <br/>
+                                <div class="reg">
+                                    <label>address</label><input type="text" name="add6" value="" placeholder="address" ng-model="profile.details.emergencyContactDetails1.address">
+                                    <div id="error"></div>
+                                </div>
+                                <br/>
+                                <div class="reg">
+                                    <label>telephone no.</label><br/><input type="text" name="tel7" value="" placeholder="telephone no." id="rform" ng-model="profile.details.emergencyContactDetails1.telephone">
+                                    <div id="error"></div>
+                                </div>
+                                <br/>
+                                <div class="reg">
+                                    <label>mobile no.</label><br/><input type="text" name="mtel8" value="" placeholder="mobile no." id="rform" ng-model="profile.details.emergencyContactDetails1.mobile">
+                                    <div id="error"></div>
+                                </div>
+                                <br/>
+                                <div class="reg">
+                                    <label>e-mail</label><input type="text" name="email9" value="" placeholder="e-mail" ng-model="profile.details.emergencyContactDetails1.email">
+                                </div>
+                                <br/><br/><br/>
                             </div>
-                            <br/>
-                            <div class="reg">
-                                <label>Address</label><input type="text" name="add6" value="" placeholder="Address">
-                                <div id="error"></div>
-                            </div>
-                            <br/>
-                            <div class="reg">
-                                <label>Telephone No.</label><br/><input type="text" name="tel7" value="" placeholder="Telephone No." id="rform">
-                                <div id="error"></div>
-                            </div>
-                            <br/>
-                            <div class="reg">
-                                <label>Mobile No.</label><br/><input type="text" name="mtel8" value="" placeholder="Mobile No." id="rform">
-                                <div id="error"></div>
-                            </div>
-                            <br/>
-                            <div class="reg">
-                                <label>E-mail</label><input type="text" name="email9" value="" placeholder="E-mail">
-                            </div>
-                            <br/><br/><br/>
                             <h3>&nbsp;</h3>
                             <h3>&nbsp;</h3>
-                            <h3>Emergency Contact Details -2</h3>
+                            <h3>emergency contact details -2</h3>
                             <div class="reg">
-                                <label>Name</label><input type="text" name="Name1" value="" placeholder="Name">
+                                <label>name</label><input type="text" name="name1" value="" placeholder="name" ng-model="profile.details.emergencyContactDetails2.name">
                                 <div id="error"></div>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label>Address</label><input type="text" name="add2" value="" placeholder="Address">
+                                <label>address</label><input type="text" name="add2" value="" placeholder="address" ng-model="profile.details.emergencyContactDetails2.address">
                                 <div id="error"></div>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label>Telephone No.</label><br/><input type="text" name="tel3" value="" placeholder="Telephone No." id="rform">                  
+                                <label>telephone no.</label><br/><input type="text" name="tel3" value="" placeholder="telephone no." id="rform" ng-model="profile.details.emergencyContactDetails2.telephone">                  
                                 <div id="error"></div>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label>Mobile No.</label><br/><input type="text" name="mtel4" value="" placeholder="Mobile No." id="rform">                   
+                                <label>mobile no.</label><br/><input type="text" name="mtel4" value="" placeholder="mobile no." id="rform" ng-model="profile.details.emergencyContactDetails2.mobile">                   
                                 <div id="error"></div>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label>E-mail</label><input type="text" name="email" value="" placeholder="E-mail">
+                                <label>e-mail</label><input type="text" name="email" value="" placeholder="e-mail" ng-model="profile.details.emergencyContactDetails2.email">
                             </div>
                         </div>
                         <div class="clear"></div>
-                        <p class="submit">
-                            <a href=""><input type="button" name="" value="Next" class="button"/></a>
-                        </p>
                         <p class="submit">&nbsp;</p>
                     </form>
                 </section>
             </div>
             <div id="tabs-2">
                 <section class="register2">
-                    <h3>Food Allergies</h3>
+                    <h3>food allergies</h3>
                     <form method="post" action="registration.php">
                         <div class="reg_section personal_info">
                             <div class="reg">
-                                <label> <input type="checkbox" name="r1" id="r1"> Cereals containing gluten and products</label>
+                                <label> <input type="checkbox" name="r1" id="r1" ng-model="profile.allergiesAndIntolerances.foodAllergies.cerealsContainingGluten"> cereals containing gluten and products</label>
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r2" id="r2"> Shellfish or Crustaceans and products</label> 
+                                <label> <input type="checkbox" name="r2" id="r2" ng-model="profile.allergiesAndIntolerances.foodAllergies.shellfishCrustaceans"> shellfish or crustaceans and products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r3" id="r3"> Egg and products</label> 
+                                <label> <input type="checkbox" name="r3" id="r3" ng-model="profile.allergiesAndIntolerances.foodAllergies.eggAndProducts"> egg and products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r4" id="r4"> Fish / Seafood and products</label> 
+                                <label> <input type="checkbox" name="r4" id="r4" ng-model="profile.allergiesAndIntolerances.foodAllergies.fishOrSeafood"> fish / seafood and products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r5" id="r5"> Milk and products</label> 
+                                <label> <input type="checkbox" name="r5" id="r5" ng-model="profile.allergiesAndIntolerances.foodAllergies.milkAndProducts"> milk and products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r6" id="r6"> Nuts and products</label> 
+                                <label> <input type="checkbox" name="r6" id="r6" ng-model="profile.allergiesAndIntolerances.foodAllergies.nutsAndProducts"> nuts and products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r7" id="r7"> Celery and products</label> 
+                                <label> <input type="checkbox" name="r7" id="r7" ng-model="profile.allergiesAndIntolerances.foodAllergies.celeryAndProducts"> celery and products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r8" id="r8"> Mustard and products</label> 
+                                <label> <input type="checkbox" name="r8" id="r8" ng-model="profile.allergiesAndIntolerances.foodAllergies.mustardAndProducts"> mustard and products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r9" id="r9"> Sesame and products</label> 
+                                <label> <input type="checkbox" name="r9" id="r9" ng-model="profile.allergiesAndIntolerances.foodAllergies.sesemeAndProducts"> sesame and products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r10" id="r10"> Sulphur Dioxide & Sulphites</label> 
+                                <label> <input type="checkbox" name="r10" id="r10" ng-model="profile.allergiesAndIntolerances.foodAllergies.sulphurDioxideAndSulphites"> sulphur dioxide & sulphites</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r11" id="r11"> Lupin and products</label> 
+                                <label> <input type="checkbox" name="r11" id="r11" ng-model="profile.allergiesAndIntolerances.foodAllergies.lupinAndProducts"> lupin and products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r12" id="r12"> Molluscs and products</label> 
-                            </div>
-                            <div class="clear"></div>
-                            <br/>
-                            <h3>Others</h3>
-                            <br/>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r13" id="r13"> Fruit or Vegetables</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r14" id="r14"> Oral Allergy Syndrome or Pollen Food Syndrome</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r15" id="r15"> Alcohol Allergy</label> 
+                                <label> <input type="checkbox" name="r12" id="r12" ng-model="profile.allergiesAndIntolerances.foodAllergies.molluscsAndProducts"> molluscs and products</label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Food Intolerances</h3>
+                            <h3>others</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r16" id="r16"> Beef/ Derivatives</label> 
+                                <label> <input type="checkbox" name="r13" id="r13" ng-model="profile.allergiesAndIntolerances.foodAllergies.fruitOrVegetables"> fruit or vegetables</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r17" id="r17"> Chicken/ Derivatives</label> 
+                                <label> <input type="checkbox" name="r14" id="r14" ng-model="profile.allergiesAndIntolerances.foodAllergies.oralAllergyOrPollenFoodSyndrome"> oral allergy syndrome or pollen food syndrome</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r18" id="r18"> Lamb/ Mutton/ Derivatives</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r19" id="r19"> Pork/ Derivatives</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r20" id="r20"> Other Animal Products/ Derivatives</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r21" id="r21"> Rennet</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r22" id="r22"> Gelatin</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r23" id="r23"> Oils of Seafood</label> 
+                                <label> <input type="checkbox" name="r15" id="r15" ng-model="profile.allergiesAndIntolerances.foodAllergies.alcoholAllergy"> alcohol allergy</label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Other Nuts/Seeds</h3>
+                            <h3>food intolerances</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r24" id="r24"> Nut oils/ Derivatives</label> 
+                                <label> <input type="checkbox" name="r16" id="r16" ng-model="profile.allergiesAndIntolerances.allergies.beefAndDerivatives"> beef/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r25" id="r25"> Seeds and Seed Products</label> 
+                                <label> <input type="checkbox" name="r17" id="r17" ng-model="profile.allergiesAndIntolerances.allergies.checkenAndDervatives"> chicken/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r26" id="r26"> Seed Derivatives</label> 
+                                <label> <input type="checkbox" name="r18" id="r18" ng-model="profile.allergiesAndIntolerances.allergies.lambMuttonAndDerivatives"> lamb/ mutton/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r27" id="r27"> Seed oil/ other Vegetable oils</label> 
+                                <label> <input type="checkbox" name="r19" id="r19" ng-model="profile.allergiesAndIntolerances.allergies.porkDerivatives"> pork/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r28" id="r28"> Coconuts/ derivatives</label> 
+                                <label> <input type="checkbox" name="r20" id="r20" ng-model="profile.allergiesAndIntolerances.allergies.otherAnimalProductsAndDerivatives"> other animal products/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r29" id="r29"> Poppy Seeds</label> 
+                                <label> <input type="checkbox" name="r21" id="r21" ng-model="profile.allergiesAndIntolerances.allergies.rennet"> rennet</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r30" id="r30"> Cotton Seeds</label> 
+                                <label> <input type="checkbox" name="r22" id="r22" ng-model="profile.allergiesAndIntolerances.allergies.gelatin"> gelatin</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r23" id="r23" ng-model="profile.allergiesAndIntolerances.allergies.oilsOfSeafood"> oils of seafood</label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Botanical</h3>
+                            <h3>other nuts/seeds</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r31" id="r31"> Garlic/ Derivatives</label> 
+                                <label> <input type="checkbox" name="r24" id="r24" ng-model="profile.allergiesAndIntolerances.allergies.nutOilsAndDerivatives"> nut oils/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r32" id="r32"> Onion/ Derivatives</label> 
+                                <label> <input type="checkbox" name="r25" id="r25" ng-model="profile.allergiesAndIntolerances.allergies.seedsAndProducts"> seeds and seed products</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r33" id="r33"> Cinnamon/ Extract</label> 
+                                <label> <input type="checkbox" name="r26" id="r26" ng-model="profile.allergiesAndIntolerances.allergies.seedDerivatives"> seed derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r34" id="r34"> Umbelliferae/Derivatives</label> 
+                                <label> <input type="checkbox" name="r27" id="r27" ng-model="profile.allergiesAndIntolerances.allergies.seedOilOrOtherVegetableOils"> seed oil/ other vegetable oils</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r35" id="r35"> Vegetables/ Derivatives</label> 
+                                <label> <input type="checkbox" name="r28" id="r28" ng-model="profile.allergiesAndIntolerances.allergies.coconutsAndDerivatives"> coconuts/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r36" id="r36"> Fruit/ Derivatives</label> 
+                                <label> <input type="checkbox" name="r29" id="r29" ng-model="profile.allergiesAndIntolerances.allergies.poppySeeds"> poppy seeds</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r37" id="r37"> Cocoa/ Derivatives</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r38" id="r38"> Potato/ Derivatives</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r39" id="r39"> Maize/ Derivatives</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r40" id="r40"> Leguminous Plants / pulses</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r41" id="r41"> Coriander</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r42" id="r42"> Vanilla</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r43" id="r43"> Mushroom</label> 
+                                <label> <input type="checkbox" name="r30" id="r30" ng-model="profile.allergiesAndIntolerances.allergies.cottonSeeds"> cotton seeds</label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Flavourings</h3>
+                            <h3>botanical</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r44" id="r44"> Natural flavouring Substances</label> 
+                                <label> <input type="checkbox" name="r31" id="r31" ng-model="profile.allergiesAndIntolerances.botanical.garlicAndDerivatives"> garlic/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r45" id="r45"> Nature Identical Flavouring Substances</label> 
+                                <label> <input type="checkbox" name="r32" id="r32" ng-model="profile.allergiesAndIntolerances.botanical.oinionAndDerivatives"> onion/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r46" id="r46"> Artificial Flavouring Substances</label> 
+                                <label> <input type="checkbox" name="r33" id="r33" ng-model="profile.allergiesAndIntolerances.botanical.cinnamonAndExtract"> cinnamon/ extract</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r47" id="r47"> Flavouring Preparations</label> 
+                                <label> <input type="checkbox" name="r34" id="r34" ng-model="profile.allergiesAndIntolerances.botanical.umberlliferaeAndDerivatives"> umbelliferae/derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r48" id="r48"> Smoke Flavourings</label> 
+                                <label> <input type="checkbox" name="r35" id="r35" ng-model="profile.allergiesAndIntolerances.botanical.vegetablesAndDerivatives"> vegetables/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r49" id="r49"> Process Flavourings</label> 
+                                <label> <input type="checkbox" name="r36" id="r36" ng-model="profile.allergiesAndIntolerances.botanical.fruitAndDerivatives"> fruit/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r50" id="r50"> Di-Acetyl</label> 
+                                <label> <input type="checkbox" name="r37" id="r37" ng-model="profile.allergiesAndIntolerances.botanical.cocoaAndDerivatives"> cocoa/ derivatives</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r51" id="r51"> MSG (Monosodium glutamate) and other glutamates</label>                      
+                                <label> <input type="checkbox" name="r38" id="r38" ng-model="profile.allergiesAndIntolerances.botanical.potatoAndDerivatives"> potato/ derivatives</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r39" id="r39" ng-model="profile.allergiesAndIntolerances.botanical.maizeAndDerivatives"> maize/ derivatives</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r40" id="r40" ng-model="profile.allergiesAndIntolerances.botanical.leguminousPlants"> leguminous plants / pulses</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r41" id="r41" ng-model="profile.allergiesAndIntolerances.botanical.coriander"> coriander</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r42" id="r42" ng-model="profile.allergiesAndIntolerances.botanical.vanila"> vanilla</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r43" id="r43" ng-model="profile.allergiesAndIntolerances.botanical.mushroom"> mushroom</label> 
+                            </div>
+                            <div class="clear"></div>
+                            <br/>
+                            <h3>flavourings</h3>
+                            <br/>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r44" id="r44" ng-model="profile.allergiesAndIntolerances.flavourings.naturalFlavouringSubstances"> natural flavouring substances</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r45" id="r45" ng-model="profile.allergiesAndIntolerances.flavourings.naturallyIdenticalFlavouringSubstances"> nature identical flavouring substances</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r46" id="r46" ng-model="profile.allergiesAndIntolerances.flavourings.artificialFlavouringSubstances"> artificial flavouring substances</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r47" id="r47" ng-model="profile.allergiesAndIntolerances.flavourings.flavouringPreparations"> flavouring preparations</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r48" id="r48" ng-model="profile.allergiesAndIntolerances.flavourings.smokeFlavourings"> smoke flavourings</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r49" id="r49" ng-model="profile.allergiesAndIntolerances.flavourings.processFlavourings"> process flavourings</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r50" id="r50" ng-model="profile.allergiesAndIntolerances.flavourings.diAcetyl"> di-acetyl</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r51" id="r51" ng-model="profile.allergiesAndIntolerances.flavourings.msg"> msg (monosodium glutamate) and other glutamates</label>                      
                             </div>
                             <div class="reg"> 
-                                <label> <input type="checkbox" name="r52" id="r52"> Biologically Active Principals</label> 
+                                <label> <input type="checkbox" name="r52" id="r52" ng-model="profile.allergiesAndIntolerances.flavourings.mushroom"> biologically active principals</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r53" id="r53"> Naturally occurring glutamates</label> 
+                                <label> <input type="checkbox" name="r53" id="r53" ng-model="profile.allergiesAndIntolerances.flavourings.biologicallyActivePrinciples"> naturally occurring glutamates</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r54" id="r54"> Nucleotides E627, E631, E635</label> 
+                                <label> <input type="checkbox" name="r54" id="r54" ng-model="profile.allergiesAndIntolerances.flavourings.naturallyOccuringGlutamates"> nucleotides e627, e631, e635</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r55" id="r55"> Yeast/Extract</label> 
+                                <label> <input type="checkbox" name="r55" id="r55" ng-model="profile.allergiesAndIntolerances.flavourings.yeastAndExtract"> yeast/extract</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r56" id="r56"> HVP (Hydrolysed vegetable protein)</label> 
+                                <label> <input type="checkbox" name="r56" id="r56" ng-model="profile.allergiesAndIntolerances.flavourings.hvp"> hvp (hydrolysed vegetable protein)</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r57" id="r57"> TVP (Texturised vegetable protein)</label> 
+                                <label> <input type="checkbox" name="r57" id="r57" ng-model="profile.allergiesAndIntolerances.flavourings.tvp"> tvp (texturised vegetable protein)</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r58" id="r58"> Other added Flavour Enhancers (inc. guanylate, etc.)
+                                <label> <input type="checkbox" name="r58" id="r58" ng-model="profile.allergiesAndIntolerances.flavourings.otherAddedFlavourEnhancers"> other added flavour enhancers (inc. guanylate, etc.)
                                 </label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r59" id="r59"> Alcohols</label> 
+                                <label> <input type="checkbox" name="r59" id="r59" ng-model="profile.allergiesAndIntolerances.flavourings.alcohols"> alcohols</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r60" id="r60"> Organic Acids</label> 
+                                <label> <input type="checkbox" name="r60" id="r60" ng-model="profile.allergiesAndIntolerances.flavourings.organicAcids"> organic acids</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r61" id="r61"> Caffeine</label> 
+                                <label> <input type="checkbox" name="r61" id="r61" ng-model="profile.allergiesAndIntolerances.flavourings.caffeine"> caffeine</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r62" id="r62"> Quinine</label> 
+                                <label> <input type="checkbox" name="r62" id="r62" ng-model="profile.allergiesAndIntolerances.flavourings.quinine"> quinine</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r63" id="r63"> Malt Extract</label> 
+                                <label> <input type="checkbox" name="r63" id="r63" ng-model="profile.allergiesAndIntolerances.flavourings.maltExtract"> malt extract</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r64" id="r64"> Emulsifiers</label> 
+                                <label> <input type="checkbox" name="r64" id="r64" ng-model="profile.allergiesAndIntolerances.flavourings.emulsifiers"> emulsifiers</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r65" id="r65"> Maltodextrin</label> 
+                                <label> <input type="checkbox" name="r65" id="r65" ng-model="profile.allergiesAndIntolerances.flavourings.maltodextrin"> maltodextrin</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r66" id="r66"> Enzymes (including those used during processing)</label>                      
-                            </div>
-                            <div class="clear"></div>
-                            <br/>
-                            <h3>Colours</h3>
-                            <br/>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r67" id="r67">Natural colours</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r68" id="r68">Artificial colours</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r69" id="r69">Artificial Colour from Azo Dyes</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r70" id="r70">Caramel</label> 
+                                <label> <input type="checkbox" name="r66" id="r66" ng-model="profile.allergiesAndIntolerances.flavourings.enzymes"> enzymes (including those used during processing)</label>                      
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Preservatives and Antioxidants</h3>
+                            <h3>colours</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r71" id="r71">Sulphites</label> 
+                                <label> <input type="checkbox" name="r67" id="r67" ng-model="profile.allergiesAndIntolerances.colours.naturalColours">natural colours</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r72" id="r72">Sulphur Dioxide</label> 
+                                <label> <input type="checkbox" name="r68" id="r68" ng-model="profile.allergiesAndIntolerances.colours.artificialColours">artificial colours</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r73" id="r73">Ethylene Oxide</label> 
+                                <label> <input type="checkbox" name="r69" id="r69" ng-model="profile.allergiesAndIntolerances.colours.artificialColourFromAzoDyes">artificial colour from azo dyes</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r74" id="r74">Benzoates</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r75" id="r75">Nitrites and Nitrates</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r76" id="r76">Sorbates</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r77" id="r77">Other Artificial Preservatives5</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r78" id="r78">BHA (Butylated hydroxytoluene)</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r79" id="r79">BHT (Butylated hydroxyanisole)</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r80" id="r80">Other Antioxidants</label> 
+                                <label> <input type="checkbox" name="r70" id="r70" ng-model="profile.allergiesAndIntolerances.colours.caramel">caramel</label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Sugars and Sweeteners</h3>
+                            <h3>preservatives and antioxidants</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r81" id="r81">Added Sugar</label> 
+                                <label> <input type="checkbox" name="r71" id="r71" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.sulphites">sulphites</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r82" id="r82">Aspartame</label> 
+                                <label> <input type="checkbox" name="r72" id="r72" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.suphurDioxide">sulphur dioxide</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r83" id="r83">Other Artificial Sweeteners</label> 
+                                <label> <input type="checkbox" name="r73" id="r73" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.ethyleneOxide">ethylene oxide</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r84" id="r84">Dextrose</label> 
+                                <label> <input type="checkbox" name="r74" id="r74" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.benzoates">benzoates</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r85" id="r85">Fructose</label> 
+                                <label> <input type="checkbox" name="r75" id="r75" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.nitritesAndNitrates">nitrites and nitrates</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r86" id="r86">Glucose</label> 
+                                <label> <input type="checkbox" name="r76" id="r76" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.sorbates">sorbates</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r87" id="r87">Polyols</label> 
+                                <label> <input type="checkbox" name="r77" id="r77" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.otherArtificialPreservatives">other artificial preservatives5</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r88" id="r88">Sucrose</label> 
+                                <label> <input type="checkbox" name="r78" id="r78" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.bha">bha (butylated hydroxytoluene)</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r89" id="r89">Honey</label> 
+                                <label> <input type="checkbox" name="r79" id="r79" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.bht">bht (butylated hydroxyanisole)</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r80" id="r80" ng-model="profile.allergiesAndIntolerances.preservativesAndAntioxidants.otherAntioxidants">other antioxidants</label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Food Intolerances</h3>
+                            <h3>sugars and sweeteners</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r90" id="r90">Allergic rhinitis (hay fever) which affects the nose and                       eyes</label> 
+                                <label> <input type="checkbox" name="r81" id="r81" ng-model="profile.allergiesAndIntolerances.sugarsAndSweetners.addedSugar">added sugar</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r91" id="r91">Asthma which affects the lung</label> 
+                                <label> <input type="checkbox" name="r82" id="r82" ng-model="profile.allergiesAndIntolerances.sugarsAndSweetners.aspartame">aspartame</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r92" id="r92">Other Artificial Sweeteners</label> 
+                                <label> <input type="checkbox" name="r83" id="r83" ng-model="profile.allergiesAndIntolerances.sugarsAndSweetners.otherArtificialSweetners">other artificial sweeteners</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r93" id="r93">Eczema or urticaria (hives) which affect the skin
+                                <label> <input type="checkbox" name="r84" id="r84" ng-model="profile.allergiesAndIntolerances.sugarsAndSweetners.dextrose">dextrose</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r85" id="r85" ng-model="profile.allergiesAndIntolerances.sugarsAndSweetners.fructose">fructose</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r86" id="r86" ng-model="profile.allergiesAndIntolerances.sugarsAndSweetners.glucose">glucose</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r87" id="r87" ng-model="profile.allergiesAndIntolerances.sugarsAndSweetners.polyols">polyols</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r88" id="r88" ng-model="profile.allergiesAndIntolerances.sugarsAndSweetners.sucrose">sucrose</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r89" id="r89" ng-model="profile.allergiesAndIntolerances.sugarsAndSweetners.honey">honey</label> 
+                            </div>
+                            <div class="clear"></div>
+                            <br/>
+                            <h3>respiratory allergies</h3>
+                            <br/>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r90" id="r90" ng-model="profile.allergiesAndIntolerances.respiratoryAllergies.hayFever">allergic rhinitis (hay fever) which affects the nose and                       eyes</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r91" id="r91" ng-model="profile.allergiesAndIntolerances.respiratoryAllergies.asthma">asthma which affects the lung</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r92" id="r92" ng-model="profile.allergiesAndIntolerances.respiratoryAllergies.otherArtificialSweetners">other artificial sweeteners</label> 
+                            </div>
+                            <div class="reg">
+                                <label> <input type="checkbox" name="r93" id="r93" ng-model="profile.allergiesAndIntolerances.respiratoryAllergies.eczemaOrUrticaria">eczema or urticaria (hives) which affect the skin
                                 </label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Skin Allergies</h3>
+                            <h3>skin allergies</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r94" id="r94">Atopic Eczema</label> 
+                                <label> <input type="checkbox" name="r94" id="r94" ng-model="profile.allergiesAndIntolerances.skinAllergies.atopicEczema">atopic eczema</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r94" id="r94">Rubber Latex</label> 
+                                <label> <input type="checkbox" name="r94" id="r94" ng-model="profile.allergiesAndIntolerances.skinAllergies.rubberLatex">rubber latex</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r95" id="r95">Cosmetics</label> 
+                                <label> <input type="checkbox" name="r95" id="r95" ng-model="profile.allergiesAndIntolerances.skinAllergies.cosmetics">cosmetics</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r96" id="r96">Hair Dye</label> 
+                                <label> <input type="checkbox" name="r96" id="r96" ng-model="profile.allergiesAndIntolerances.skinAllergies.hairDye">hair dye</label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Animal & Insect Allergies</h3>
+                            <h3>animal & insect allergies</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r97" id="r97">Dog</label> 
+                                <label> <input type="checkbox" name="r97" id="r97" ng-model="profile.allergiesAndIntolerances.animalAndInsectAllergies.dog">dog</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r98" id="r98">Cat</label> 
+                                <label> <input type="checkbox" name="r98" id="r98" ng-model="profile.allergiesAndIntolerances.animalAndInsectAllergies.cat">cat</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r99" id="r99">Insect Stings</label> 
+                                <label> <input type="checkbox" name="r99" id="r99" ng-model="profile.allergiesAndIntolerances.animalAndInsectAllergies.insectStings">insect stings</label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Drug Allergies</h3>
+                            <h3>drug allergies</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r100" id="r100">Aspirin (Salicylate)</label> 
+                                <label> <input type="checkbox" name="r100" id="r100" ng-model="profile.allergiesAndIntolerances.drugAllergies.aspirinSalicylate">aspirin (salicylate)</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r101" id="r101">Penicillin</label> 
-                            </div>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r102" id="r102">Manual Text Field</label> 
+                                <label> <input type="checkbox" name="r101" id="r101" ng-model="profile.allergiesAndIntolerances.drugAllergies.penicillin">penicillin</label> 
                             </div>
                             <div class="clear"></div>
                             <br/>
-                            <h3>Chemical Allergies</h3>
+                            <h3>drug allergies</h3>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r103" id="r103">Manual text Field</label> 
-                            </div>
-                            <div class="clear"></div>
-                            <br/>
-                            <h3>Drug Allergies</h3>
-                            <br/>
-                            <div class="reg">
-                                <label> <input type="checkbox" name="r104" id="r104">Allergic Conjunctivitis (Pink Eye)</label> 
+                                <label> <input type="checkbox" name="r104" id="r104" ng-model="profile.allergiesAndIntolerances.miscAllergies.allergicConjunctivitisPinkEye">allergic conjunctivitis (pink eye)</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r105" id="r105">Poison Ivy</label> 
+                                <label> <input type="checkbox" name="r105" id="r105" ng-model="profile.allergiesAndIntolerances.miscAllergies.poisonIvy">poison ivy</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r106" id="r106">Poison Oak</label> 
+                                <label> <input type="checkbox" name="r106" id="r106" ng-model="profile.allergiesAndIntolerances.miscAllergies.poisonOak">poison oak</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r107" id="r107">Poison Sumac</label> 
+                                <label> <input type="checkbox" name="r107" id="r107" ng-model="profile.allergiesAndIntolerances.miscAllergies.poisonSurmac">poison sumac</label> 
                             </div>
                             <div class="reg">
-                                <label> <input type="checkbox" name="r108" id="r108">Dust</label>
+                                <label> <input type="checkbox" name="r108" id="r108" ng-model="profile.allergiesAndIntolerances.miscAllergies.dust">dust</label>
                             </div>
                         </div>
                         <div class="clear"></div>
-                        <p class="submit">
-                            <a href=""><input type="button" name="" value="Next" class="button"/></a>
-                        </p>
                         <p class="submit">&nbsp;</p>
                     </form>
                 </section>
@@ -549,41 +517,40 @@
                     <form method="post" action="registration.php">
                         <div class="reg_section personal_info">
                             <div class="reg">
-                                <label><input type="checkbox" name="Vegetarians" id="Vegetarians">Vegetarians</label>
+                                <label><input type="checkbox" name="vegetarians" id="vegetarians">vegetarians</label>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="Vegans" id="Vegans"> Vegans</label>
+                                <label> <input type="checkbox" name="vegans" id="vegans"> vegans</label>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="Diabetics" id="Diabetics"> Diabetics</label>
+                                <label> <input type="checkbox" name="diabetics" id="diabetics"> diabetics</label>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="Kosher Diet" id="Kosher Diet"> Kosher Diet</label>
+                                <label> <input type="checkbox" name="kosher diet" id="kosher diet"> kosher diet</label>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="Halal_diet" id="Halal_diet"> Halal_diet</label>
+                                <label> <input type="checkbox" name="halal_diet" id="halal_diet"> halal_diet</label>
                             </div>
                             <br/>
                             <div class="reg">
-                                <label> <input type="checkbox" name="Coeliacs" id="Coeliacs"> Coeliacs</label>
+                                <label> <input type="checkbox" name="coeliacs" id="coeliacs"> coeliacs</label>
                             </div>
                             <br/>
                         </div>
                         <div class="clear"></div>
-                        <p class="submit">
-                            <a href=""><input type="button" name="" value="Next" class="button"/></a>
-                        </p>
                         <p class="submit">&nbsp;</p>
                     </form>
                 </section>
             </div>
+            <button ng-click="createProfile();">Create profile</button>
+            {{ statusMessage }}
         </div>
-        <!--end tebs-->
-        <div class="clear"></div>
+
+<div class="clear"></div>
     </div>
     <div id="middle-right">
     </div>

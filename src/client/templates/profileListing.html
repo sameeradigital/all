@@ -4,12 +4,12 @@
 <div id="user_interface" ng-controller="ProfileListingController">
  <section class="register">
  <h2>Profile Listing</h2><br/><br/>
-    <form id="form1" name="form1" method="post" action="">
+
       <table width="100%" border="0">
         <tr>
-          <td width="18%" style="text-align:left;"><h4>Allershare ID</h4></td>
+          <td width="25%" style="text-align:left;"><h4>Allershare ID</h4></td>
           <td width="22%" style="text-align:left;"><h4>Profile Name</h4></td>
-          <td width="42%" style="text-align:left;"><h4>Address</h4></td>
+          <td width="35%" style="text-align:left;"><h4>Address</h4></td>
           <td width="9%">&nbsp;</td>
           <td width="9%"></td>
       </tr>
@@ -17,18 +17,18 @@
           <td colspan="6">&nbsp;</td>
         </tr>
         <tr ng-repeat="profile in profiles">
-          <td style="text-align:left;">AL123456</td>
-          <td style="text-align:left;">Robet Azar</td>
-          <td style="text-align:left;">16 Convery Gardens,London,Ec12DE</td>
+          <td style="text-align:left;">{{ profile._id }}</td>
+          <td style="text-align:left;">{{ profile.details.name }}</td>
+          <td style="text-align:left;">{{ profile.details.address }}</td>
           <td> 
                <p class="submit">
-               <a href="view.php"><input type="button" name="" value="View" class="button1"/></a></p></td>
+               <a><input type="button" value="View" class="button1" ng-click="viewProfile(profile);"/></a></p></td>
                <td width="9%"><p class="submit">
-               <a href=""><input type="button" name="" value="Delete" class="button1" /></a></p>  
+               <a href=""><input type="button" value="Delete" class="button1" ng-click="deleteProfile(profile);"/></a></p>  
           </td>
       </tr>
     </table>
-  </form>
+
   <br/>
   <br/>
       <p class="submit">

@@ -1,0 +1,266 @@
+<div ng-include="'templates/header.html'"> </div>	
+<div ng-include="'templates/lowerHeader.html'"> </div>
+
+<div id="user_profile" ng-controller="ProfileDetailController">
+   	  <div id="middle-left">
+		<h3>Robert Azar</h3>
+		<div id="tabs">
+		  <ul>
+			<li><a href="#tabs-1"><img src="images/create_profile.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Profile Details</a></li>
+			<li><a href="#tabs-2"><img src="images/tab 2.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Allergies & Intolerances</a></li>
+			<li><a href="#tabs-3"><img src="images/tab 3.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Dietary Requirements</a></li>
+			<li><a href="#tabs-4"><img src="images/tab 4.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Profile Summary</a></li>
+		  </ul>
+		  <div id="tabs-1">
+			<section class="registerp">
+                  <h1></h1>
+                  <form method="post" action="profile_details.html">
+                  <div class="reg_section personal_info">
+                  <div class="reg">
+                  <label>Full Name :</label><label>{{ profile.details.name }}</label></div>
+                  <div class="reg">
+                  <label>Address :</label><label>{{ profile.details.address }}</label></div>
+                  <div class="reg">
+                  <label>Date Of Birth :</label><label>{{ profile.details.dateOfBirth }}</label></div>
+                  <div class="reg">
+                  <label>Telephone No. :</label><label>{{ profile.details.telephone }}</label></div>
+                  <div class="reg">
+                  <label>Mobile No. :</label><label>{{ profile.details.mobile }}</label></div>
+                   <div class="reg">
+                  <label>E-mail :</label><label>{{ profile.details.email }}</label></div>
+                  <div class="reg">
+                  <label>Bloodtype :</label><label>{{ profile.details.bloodType }}</label></div>
+                  <div class="reg">
+                  <label>Ethnicity :</label><label>{{ profile.details.Ethnicity }}</label></div>
+                  <div class="reg">
+                 <label>NHS Number :</label><label>{{ profile.details.nhsNumber }}</label>  </div>
+                 <div class="reg">
+                 <label>Medical Conditions :</label><label>{{ profile.details.medicalConditions }}</label>
+                 </div>
+                 <div class="reg">
+                <label>Medical Requirements :</label><label>{{ profile.details.medicalRequirements }}</label>
+                </textarea></div>
+                <div class="reg">
+                  <label>Medical Implants :</label><label>{{ profile.details.medicalImplants }}<br />
+                  </label>
+                  </div>
+               <br/>
+              <h3>&nbsp;</h3>
+                  <h3>&nbsp;</h3>
+                  <h3>Emergency Contact Details -1</h3><br/>
+                <div class="reg">
+                   <label>Name</label> <label>{{ profile.details.emergencyContactDetails1.name }}</label> <div id="error"></div>
+                   </div><br/>
+                   
+                   <div class="reg">
+                   <label>Address</label><label>{{ profile.details.emergencyContactDetails1.address }}</label><div id="error"></div>
+                   </div><br/>
+                   
+                   <div class="reg">
+                   <label>Telephone No.</label><label>{{ profile.details.emergencyContactDetails1.telephone }}</label></div><br/>
+                   
+                   <div class="reg">
+                   <label>Mobile No.</label><label>{{ profile.details.emergencyContactDetails1.mobile }}</label></div><br/>
+                   
+                   <div class="reg">
+                   <label>E-mail</label><label>{{ profile.details.emergencyContactDetails1.email }}</label>
+                  </div>
+                  
+                   <h3>&nbsp;</h3>
+                  <h3>&nbsp;</h3>
+                  <h3>Emergency Contact Details -2</h3><br/>
+                <div class="reg">
+                   <label>Name</label> <label>{{ profile.details.emergencyContactDetails2.name }}</label> <div id="error"></div>
+                   </div><br/>
+                   
+                   <div class="reg">
+                   <label>Address</label><label>{{ profile.details.emergencyContactDetails2.address }}</label><div id="error"></div>
+                   </div><br/>
+                   
+                   <div class="reg">
+                   <label>Telephone No.</label><label>{{ profile.details.emergencyContactDetails2.telephone }}</label></div><br/>
+                   
+                   <div class="reg">
+                   <label>Mobile No.</label><label>{{ profile.details.emergencyContactDetails1.mobile }}</label></div><br/>
+                   
+                   <div class="reg">
+                   <label>E-mail</label><label>{{ profile.details.emergencyContactDetails2.email }}</label>
+                  </div>
+                  
+                  
+               
+                  </div>
+                  <div class="clear"></div>
+                 
+                   <p class="submit">
+                   <a href="profile_overview.htm"><input type="button" name="" value="Profile Overview" class="button"/></a>
+                   
+                  </p>
+                  </form>
+            </section>
+		  </div>
+		  <div id="tabs-2">
+			<section class="register2">
+                  <h3>Food Allergies</h3>
+
+                  <div class="reg_section personal_info">
+                  <div class="reg">
+                    <label> Cereals containing gluten and products</label></div>
+                  <div class="reg">
+                    <label> Shellfish or Crustaceans and products</label> </div>
+                 <div class="clear"></div><br/>
+                 <h3>Others</h3><br/>
+                 <div class="reg">
+                 <label>  Fruit or Vegetables</label> </div>
+                 <div class="clear"></div><br/>
+                 <h3>Food Intolerances</h3><br/>
+                 <div class="reg">
+                 <label> Beef/ Derivatives</label> </div>
+                    
+                    <div class="reg">
+                    <label>Chicken/ Derivatives</label> </div>
+                    
+                   
+                    
+                    <div class="reg">
+                    <label> Pork/ Derivatives</label> </div>
+                   
+                    
+                    <div class="reg">
+                    <label> Oils of Seafood</label> </div>
+                    
+                     <div class="clear"></div><br/>
+                    <h3>Other Nuts/Seeds</h3> <label> Nut oils/ Derivatives</label><br/>
+                    
+                     <div class="clear"></div><br/>
+                    <h3>Botanical</h3><br/>
+                    <div class="reg">
+                     <label>Garlic/ Derivatives</label> </div>
+                     
+                     
+                     
+                     <div class="reg">
+                    <label>Maize/ Derivatives</label> </div>
+                    
+                    <div class="reg">
+                    <label>Leguminous Plants / pulses</label> </div>
+                    
+                    <div class="reg">
+                    <label>Coriander</label> </div>
+                    
+                   
+                     <div class="clear"></div><br/>
+                     <h3>Flavourings</h3><br/>
+                    <div class="reg">
+ 
+                     <div class="reg">
+                    <label>Quinine</label> </div>
+                    
+                    <div class="reg">
+                    <label>Malt Extract</label> </div>
+                    
+                    <div class="reg">
+                    <label>Emulsifiers</label> </div>
+                    
+                    <div class="reg">
+                    <label>Maltodextrin</label> </div>
+                    
+                    <div class="reg">
+                    <label>Enzymes (including those used during processing)</label> </div><br/>
+                     <div class="clear"></div>
+                     <h3>Colours</h3><label> Natural colours</label><br/><br/>
+                    <div class="reg">
+                     
+                    
+                     <div class="clear"></div>
+                     <h3>Preservatives and Antioxidants</h3><label>Sulphites</label><br/>
+                    <div class="reg">
+                    
+                    
+                     <div class="clear"></div><br/>
+                     <h3>Sugars and Sweeteners</h3>
+                    <div class="reg">
+                     <label> Added Sugar</label> </div>
+                     
+                     <div class="reg">
+                   
+                    
+                     <div class="clear"></div><br/>
+                     <h3>Food Intolerances</h3>
+                    <div class="reg">
+                     <label>Allergic rhinitis (hay fever) which affects the nose and                       eyes</label> </div>
+                    
+                    
+                     <div class="clear"></div><br/>
+                    <h3>Skin Allergies</h3>
+                    <div class="reg">
+                     <label>Atopic Eczema</label> </div>
+                     
+                     
+                    
+                     <div class="clear"></div><br/>
+                    <h3>Animal & Insect Allergies</h3>
+                    <div class="reg">
+                     <label>Dog</label> </div>
+                     
+                     
+                    
+                     <div class="clear"></div><br/>
+                     <h3>Chemical Allergies</h3>
+                    <div class="reg">
+                     <label>Manual text Field</label> </div>
+                     
+                      <div class="clear"></div><br/>
+                      <h3>Drug Allergies</h3>
+                    <div class="reg">
+                     <label>Allergic Conjunctivitis (Pink Eye)</label> </div>
+                    
+                    
+                    
+                  </div>
+                  <div class="clear"></div>
+                  
+                 <p class="submit">
+                   <a href="profile_overview.htm"><input type="button" name="" value="Profile Overview" class="button"/></a>
+                   
+                  </p>
+                   <p class="submit">&nbsp;</p>
+                  </form>
+            </section>
+		  </div>
+		  <div id="tabs-3">
+			<section class="register2">
+               <h1></h1>
+                  <form method="post" action="registration.php">
+                  <div class="reg_section personal_info">
+                  
+                  <div class="reg">
+                  <label>Vegetarians</label>
+                  </div><br/>
+               
+                  <div class="reg">
+                  <label>Kosher Diet</label>
+                  </div><br/>
+                 <div class="reg">
+                  <label> Halal_diet</label>
+                  </div><br/>
+                  <div class="reg">
+                  <label>Coeliacs</label></div><br/>
+                  </div>
+                  <div class="clear"></div>
+                  <p class="submit">
+                   <a href="profile_overview.htm"><input type="button" name="" value="Profile Overview" class="button"/></a>
+                   
+                  </p>
+                  </form>
+          </section>
+		  </div>
+		  <div id="tabs-4">
+		  	<p class="submit">
+                 <input type="button" name="" value="Save" class="button1"/></a></p>
+		  </div>
+		</div><!--end tebs-->
+			<div class="clear"></div>       
+        </div>
+   	  <div class="clear"></div><!--end recoardtable-->
+<div ng-include="'templates/footer.html'"> </div>

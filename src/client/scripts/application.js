@@ -1,41 +1,44 @@
-var allershare = angular.module('allershare', ['ngRoute']);
+var allershare = angular.module('allershare', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
 
 allershare.config(function($routeProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'templates/homePage.html',
+        templateUrl: 'templates/homePage.html'
     }).when('/facts', {
-        templateUrl: 'templates/facts.html',
+        templateUrl: 'templates/facts.html'
     }).when('/faq', {
-        templateUrl: 'templates/faq.html',
+        templateUrl: 'templates/faq.html'
     }).when('/newsAlerts', {
-        templateUrl: 'templates/newsAlerts.html',
+        templateUrl: 'templates/newsAlerts.html'
     }).when('/contact', {
-        templateUrl: 'templates/contact.html',
+        templateUrl: 'templates/contact.html'
     }).when('/profileListing', {
-        templateUrl: 'templates/profileListing.html',
+        templateUrl: 'templates/profileListing.html'
     }).when('/createProfile', {
-        templateUrl: 'templates/createProfile.html',
+        templateUrl: 'templates/createProfile.html'
+    }).when('/profileDetail/:profileId', {
+        templateUrl: 'templates/profileDetail.html'
     });
 });
 
-allershare.service('UserService', function($http) {
+allershare.service('UserService', function($http, $cookieStore) {
     var self = this;
-    
-    this.userData = null;
-    this.userProfiles = null;
+    this.userData = $cookieStore.get('userData');
+    this.userProfiles = [];
     this.isLoggedIn = false;
     
-    this.signUp = function(data, cb) {
-        if (!data.username) { cb(false, "Username is required"); }
-        else if (!data.email) { cb(false, "Email is required"); }
-        else if (!data.password) { cb(false, "Password is required"); }
-        else if (!data.confirmPassword) { cb(false, "Confirm password required"); }
-        else if (data.password !== data.confirmPassword) { cb(false, "Passwords do not match"); }
+    this.onUserChanged = function() {
+        $cookieStore.put('userData', self.userData);
+    };
+    
+    this.signUp = function(user, cb) {
+        if (!user.username) { cb(false, "Username is required"); }
+        else if (!user.email) { cb(false, "Email is required"); }
+        else if (!user.password) { cb(false, "Password is required"); }
+        else if (!user.confirmPassword) { cb(false, "Confirm password required"); }
+        else if (user.password !== data.confirmPassword) { cb(false, "Passwords do not match"); }
         else {
             $http.post('/api/users/', {
-                username: data.username, 
-                email: data.email,
-                password: data.password 
+                user: user
             }).success(function(data) {
                 cb(true);
             }).error(function(data) {
@@ -54,11 +57,25 @@ allershare.service('UserService', function($http) {
             }).success(function(data) {
                 self.userData = data;
                 self.isLoggedIn = true;
+                self.onUserChanged();
                 cb(true);
             }).error(function(data) {
                 cb(false, data);
             });
         }
+    };
+    
+    this.getProfile = function(profileId, cb) {
+        for (var i=0; i < self.userProfiles.length; i++) {
+            if (self.userProfiles[i]._id === profileId) {
+                return self.userProfiles[i];
+            }
+        }
+        $http.get('/api/users/' + self.userData._id + '/profiles/' + profileId).success(function(data) {
+            cb(true, data);
+        }).error(function(data) {
+            cb(false, data);
+        });
     };
     
     this.getProfiles = function(cb) {
@@ -70,13 +87,19 @@ allershare.service('UserService', function($http) {
         });
     };
     
-    this.postProfile = function(data, cb) {
-    
+    this.postProfile = function(profile, cb) {
+        $http.post('/api/users/' + self.userData._id + '/profiles/', {profile: profile}).success(function(data) { 
+            cb(true);
+        }).error(function(data, status) { 
+            self.userProfiles.push(data);
+            cb(false, data);
+        });
     };
     
-    this.deleteProfile = function(profileId, cb) {
-        $http.delete('/api/users/' + self.userData + '/profiles/' + profileId).success(function(data) {
+    this.deleteProfile = function(profile, cb) {
+        $http.delete('/api/users/' + self.userData._id + '/profiles/' + profile._id).success(function(data) {
             cb(true);
+            self.userProfiles.splice(self.userProfiles.indexOf(profile), 1);
         }).error(function(data) {
             cb(true, data);
         });
@@ -112,6 +135,11 @@ allershare.controller('LoginController', function($scope, $location, UserService
     $scope.password = "";
     $scope.statusMessage = null;
     $scope.isEnabled = true;
+    $scope.isLoggedIn = UserService.isLoggedIn;
+    
+    $scope.$watch(UserService.isLoggedIn, function() {
+        $scope.isLoggedIn = UserService.isLoggedIn;
+    });
     
     $scope.login = function() {
         $scope.isEnabled = false;
@@ -141,19 +169,144 @@ allershare.controller('ProfileListingController', function($scope, $location, Us
     
     $scope.deleteProfile = function(profile) {
         $scope.isEnabled = false;
-        UserService.deleteProfile(profile._id, function(isSuccess, responseMessage) {
+        UserService.deleteProfile(profile, function(isSuccess, responseMessage) {
             $scope.isEnabled = true;
-            if (isSuccess) {
-                UserService.userProfiles.splice(UserService.indexof(profile), 1);
-            }
         });
     };
 
     $scope.createProfile = function() {
         $location.path('/createProfile');
     };
+    
+    $scope.viewProfile = function(profile) {
+        $location.path('/profileDetail/' + profile._id);
+    };
+    
+    $scope.loadUserProfiles();
 });
 
 allershare.controller('CreateProfileController', function($scope, $location, UserService) {
+    $scope.isEnabled = true;
+    $scope.statusMessage = null;
+    $scope.profile = {};
+    $scope.bloodTypes = ['a', 'b', 'ab', 'o'];
+    $scope.ethnicities = ['white', 'mixed / multiple ethnic groups', 'asian / asian british', 
+                                 'black / african / caribbean / black british', 'other ethnic group'];
     
+    $scope.validate = function() {
+        if (!$scope.profile.details) {
+            $scope.statusMessage = "Please add all required fields";
+            return false;
+        }
+        else if (!$scope.profile.details.name) {
+            $scope.statusMessage = "Name is required";
+            return false;
+        }
+        else if (!$scope.profile.details.address) {
+            $scope.statusMessage = "Address is required";
+            return false;
+        }
+        else if (!$scope.profile.details.dateOfBirth) {
+            $scope.statusMessage = "Date of birth is required";
+            return false;
+        }
+        else if (!$scope.profile.details.telephone) {
+            $scope.statusMessage = "Telephone is required";
+            return false;
+        }
+        else if (!$scope.profile.details.mobile) {
+            $scope.statusMessage = "Mobile is required";
+            return false;
+        }
+        else if (!$scope.profile.details.email) {
+            $scope.statusMessage = "Email is required";
+            return false;
+        }
+        else if (!$scope.profile.details.bloodType) {
+            $scope.statusMessage = "Blood type is required";
+            return false;
+        }
+        else if (!$scope.profile.details.ethnicity) {
+            $scope.statusMessage = "Ethnicity is required";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails1.name) {
+            $scope.statusMessage = "Name is required for emergency contact details - 1";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails1.address) {
+            $scope.statusMessage = "Address is required for emergency contact details - 1";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails1.telephone) {
+            $scope.statusMessage = "Telephone is required for emergency contact details - 1";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails1.mobile) {
+            $scope.statusMessage = "Mobile is required for emergency contact details - 1";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails1.email) {
+            $scope.statusMessage = "Email is required for emergency contact details - 1";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails2.name) {
+            $scope.statusMessage = "Name is required for emergency contact details - 2";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails2.address) {
+            $scope.statusMessage = "Address is required for emergency contact details - 2";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails2.telephone) {
+            $scope.statusMessage = "Telephone is required for emergency contact details - 2";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails2.mobile) {
+            $scope.statusMessage = "Mobile is required for emergency contact details - 2";
+            return false;
+        }
+        else if (!$scope.profile.details.emergencyContactDetails2.email) {
+            $scope.statusMessage = "Email is required for emergency contact details - 2";
+            return false;
+        }
+        return true;
+    };
+    
+    $scope.createProfile = function() {
+        if ($scope.validate()) {
+            $scope.isEnabled = false;
+            UserService.postProfile($scope.profile, function(isSuccess, data) {
+                if (isSuccess) {
+                    $location.path('/profileListing');
+                }
+                else {
+                    $scope.statusMessage = data;
+                }
+                $scope.isEnabled = true;
+            });
+        }
+    };
+});
+
+allershare.controller('ProfileDetailController', function($scope, $routeParams, UserService) {
+    $scope.isEnabled = true;
+    $scope.statusMessage = null;
+    $scope.profile = null;
+    
+    $scope.loadUserProfile = function() {
+        $scope.statusMessage = null;
+        $scope.isEnabled = false;
+        UserService.getProfile($routeParams.profileId, function(isSuccess, data) {
+            if (isSuccess) {
+                $scope.profile = data;
+            }
+            else {
+                $scope.statusMessage = data;
+            }
+            $scope.isEnabled = true;
+        });
+    };
+    
+    $scope.loadUserProfile();
 });

@@ -16,22 +16,28 @@
         </div>
         <div id="topRightLogin">
             <div id="login" class="section" ng-controller="LoginController">
-                {{ statusMessage }}
-                <form class="Fields">
-                  <ul>  
-                    <li class="UserName">
-                        <label for="username"></label>
-                        <input id="username" class="Value" type="text" placeholder="Username" ng-model="username"/>
-                    </li>
-                    <li class="Password">
-                        <label for="password"></label>
-                        <input id="password" class="Value" type = "password" placeholder="Password" ng-model="password"/>
-                    </li>
-                    <li class="Login">
-                      <input class="Login" type="button" value="Sign in" ng-click="login()"/>
-                    </li>
-                </ul>
-                </form>
+                <div ng-hide="isLoggedIn">
+                    {{ statusMessage }}
+                    <form class="Fields">
+                      <ul>  
+                        <li class="UserName">
+                            <label for="username"></label>
+                            <input id="username" class="Value" type="text" placeholder="Username" ng-model="username"/>
+                        </li>
+                        <li class="Password">
+                            <label for="password"></label>
+                            <input id="password" class="Value" type = "password" placeholder="Password" ng-model="password"/>
+                        </li>
+                        <li class="Login">
+                          <input class="Login" type="button" value="Sign in" ng-click="login()"/>
+                        </li>
+                    </ul>
+                    </form>
+                </div>
+                <div ng-show="isLoggedIn">
+                    <a href="#/account"> Account </a>
+                    <a href="#/profileListing"> Profiles </a>
+                </div>
             </div>
         </div>
     </div>
