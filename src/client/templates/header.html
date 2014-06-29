@@ -29,14 +29,15 @@
                             <input id="password" class="Value" type = "password" placeholder="Password" ng-model="password"/>
                         </li>
                         <li class="Login">
-                          <input class="Login" type="button" value="Sign in" ng-click="login()"/>
+                          <input class="Login" type="button" value="Sign in" ng-click="login();"/>
                         </li>
                     </ul>
                     </form>
                 </div>
                 <div ng-show="isLoggedIn">
-                    <a href="#/account"> Account </a>
-                    <a href="#/profileListing"> Profiles </a>
+                    <a href="#/account"> Account </a> |
+                    <a href="#/profileListing"> Profiles </a> |
+                    <a href='/' ng-click="logout();"> Logout </a>
                 </div>
             </div>
         </div>

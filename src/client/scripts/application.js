@@ -69,6 +69,13 @@ allershare.service('UserService', function($http, $cookieStore) {
         }
     };
     
+    this.logout = function() {
+        self.userData = null;
+        self.userProfiles = null;
+        self.isLoggedIn = false;
+        $cookieStore.del('userData');
+    };
+    
     this.getUser = function(cb) {
          $http.get('/api/users/' +self.userData._id + '/').success(function(data) {
             self.userData = data;
@@ -166,6 +173,10 @@ allershare.controller('LoginController', function($scope, $location, UserService
                 $location.path('/profileListing');
             }
         });
+    };
+    
+    $scope.logout = function() {
+        UserService.logout();
     };
 });
 
@@ -365,5 +376,5 @@ allershare.controller('ProfileOverviewController', function($scope, $routeParams
         });
     };
     
-    $scope.loadUser();
+    $scope.loadProfile();
 });

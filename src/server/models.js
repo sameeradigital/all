@@ -19,10 +19,10 @@ var BaseUserSchema = mongoose.Schema({
 var AdminSchema = BaseUserSchema.extend({ });
 
 var OrganisationSchema = BaseUserSchema.extend({
-    organisationName: {type: String, required: true},
-    registeredAddress: {type: String, required: true},
+    name: {type: String, required: true},
+    address: {type: String, required: true},
     postalAddress: {type: String, required: true},
-    contactNumber: {type: String, required: true}
+    telephone: {type: String, required: true}
 }); 
 
 var ProfileSchema = new mongoose.Schema({

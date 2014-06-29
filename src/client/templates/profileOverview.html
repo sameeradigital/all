@@ -1,0 +1,134 @@
+<div ng-include="'templates/header.html'"> </div>	
+<div ng-include="'templates/lowerHeader.html'"> </div>
+
+<div id="user_profile" ng-controller="ProfileOverviewController">
+    	<div id="middle-left" style="width: 1000px;">
+		<h3 style="text-align:center;font-size:18px;border-style:solid;border-width:1px;width:150px; height:20px; padding:2%; margin-left: 39%;">{{ profile.details.name }}</h3>
+        <div style="margin-left: 49%;margin-top: -21px;/* width: 65%; */">|</div>
+		<hr style="width: 62%;margin-top: 0px;">
+        <p style="margin-top: -12px;margin-left: 172px;">|</p>
+        <p style="margin-top: -37px;margin-left: 369px;">|</p>
+        <p style="margin-top: -39px;margin-left: 547px;">|</p>
+        <p style="margin-top: -38px;margin-left: 750px;">|</p>
+		
+		  <div style="width:145px;height:155px;margin:2%; float:left;text-align:center; background-color:#475868;color:#FFF; margin-left: 118px; margin-top: -21px"><a href="#/profileDetail/{{ profile._id}}" style="
+    color: #fff;"><img src="images/obg 1.jpg" width="140" height="130">Profile Details</a></div>
+    
+           <div style="width:145px;height:155px;margin:2%; float:left; text-align:center; background-color:#6da3a3; color:#FFF; margin-top: -21px"><a href="#/profileDetail/{{ profile._id}}" style="
+    color: #fff;"><img src="images/obg 5.jpg" width="140" height="130">Allergies &amp; Intolerances</a></div>
+    
+            <div style="width:145px;height:155px;margin:2%; float:left; text-align:center; background-color:#ff4800; color:#FFF; margin-top: -21px"><a href="#/profileDetail/{{ profile._id}}" style="
+    color: #fff;"><img src="images/obg 4.jpg" width="140" height="130">Dietary Requirements</a></div>
+    
+             <div style="width:145px;height:155px;margin:2%; float:left; text-align:center; background-color:#e12243; color:#FFF; margin-top: -21px"><a href="#/profileDetail/{{ profile._id}}" style="
+    color: #fff;"><img src="images/obg 3.jpg" width="140" height="130">Profile Summary</a></div>
+		
+			<div class="clear"></div>       
+        </div>
+            <div id="middle-right"></div>
+		<div class="clear"></div>
+		<div class="recoardtable">
+		<br  />
+                  <h3 style="text-align:left;">LINKED ORGANISATIONS</h3>
+					<table width="900px" height="171" style="border-collapse:separate; border-spacing:1px 1px;" >
+		  <tr>
+			<td width="8%" height="42" id="reportmenu">ID</td>
+			<td width="21%" id="reportmenu">NAME</td>
+			<td width="25%" id="reportmenu">ADDRESS</td>
+			<td width="15%" id="reportmenu">CONTACT NAME </td>
+			<td width="15%" id="reportmenu">CONTACT NUMBER </td>
+			<td width="6%">&nbsp;</td>
+            <td width="10%">&nbsp;</td>
+		  </tr>
+		  <tr ng-repeat="organisation in user.profile.organisations | filter: {organisationAccepted: true}" >
+			<td height="26" id="record">organisation.organisation._id</td>
+			<td id="record">organisation.organisation.name</td>
+			<td id="record">organisation.organisation.address</td>
+			<td id="record">organisation.organisation.name</td>
+			<td id="record">organisation.organisation.telephone</td>
+			<td id="rrecord"><input type="button" name="" value="View" class="button3" /></td>
+            <td id="rrecord"><input type="button" name="" value="De-Link" class="button3" /></td>
+		  </tr>
+		  <tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		  </tr>
+		  <tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		  </tr>
+		</table>	    
+    </div>
+    <div class="recoardtable">
+        <br/>
+        <h3 style="text-align:left;">PENDING ORGANISATIONS</h3>
+        <table width="900px" height="171" style="border-collapse:separate; border-spacing:1px 1px;" >
+		  <tr>
+			<td width="8%" height="42" id="reportmenu">ID</td>
+			<td width="21%" id="reportmenu">NAME</td>
+			<td width="25%" id="reportmenu">ADDRESS</td>
+			<td width="15%" id="reportmenu">CONTACT NAME </td>
+			<td width="15%" id="reportmenu">CONTACT NUMBER </td>
+			<td width="6%">&nbsp;</td>
+            <td width="10%">&nbsp;</td>
+		  </tr>
+		  <tr ng-repeat="organisation in user.profile.organisations | filter: {organisationAccepted: false}" >
+			<td height="26" id="record">organisation.organisation._id</td>
+			<td id="record">organisation.organisation.name</td>
+			<td id="record">organisation.organisation.address</td>
+			<td id="record">organisation.organisation.name</td>
+			<td id="record">organisation.organisation.telephone</td>
+			<td id="rrecord"><input type="button" name="" value="View" class="button3" /></td>
+            <td id="rrecord"><input type="button" name="" value="De-Link" class="button3" /></td>
+		  </tr>
+		  <tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		  </tr>
+		  <tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		  </tr>
+		</table>	
+		
+		<form id="form1" name="form1" method="post" action="">
+    	    <table width="100%" border="0">
+    	    <tr>
+    	      <td width="23%" style="text-align:left;"><h4>Search for an Organisazation:</h4></td>
+    	      <td width="20%" style="text-align:left;"><input type="text" name="textfield" id="textfield" style="width:180px; height:20px;"/></td>
+    	      <td width="10%" style="text-align:left;"><input type="button" name="" value="Search" class="button2" /></td>
+    	      <td width="23%" style="text-align:left;"></td>
+    	      <td width="14%" style="text-align:left;"></td>
+    	      <td width="10%">&nbsp;</td>
+  	      </tr>
+          </table>
+        </form>
+		</div>
+        <div class="clear"></div>
+    </div>
+        </div>
+    </div>
+</div>
+
+
+<div ng-include="'templates/footer.html'"> </div>
