@@ -3,14 +3,14 @@ var routes = require('./routes');
 var security = require('./security');
 
 var app = express();
-app.set('views', __dirname + '\\..\\client\\views');
+app.set('views', __dirname + '/../client/views');
 app.set('view engine', 'jade');
 app.use(express.cookieParser());
 app.use(express.session({secret: 'secretkey'}));
 app.use(express.bodyParser());
 app.use(security.passport.initialize());
 app.use(security.passport.session());
-app.use(express.static(__dirname + '\\..\\client'));
+app.use(express.static(__dirname + '/../client'));
 
 app.get('/', function(req, resp) { resp.render('appView'); });
 app.post('/api/sessions/', security.passport.authenticate('local'), routes.postSession);

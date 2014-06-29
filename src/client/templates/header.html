@@ -35,9 +35,11 @@
                     </form>
                 </div>
                 <div ng-show="isLoggedIn">
-                    <a href="#/account"> Account </a> |
-                    <a href="#/profileListing"> Profiles </a> |
-                    <a href='/' ng-click="logout();"> Logout </a>
+                    <div style="padding-top: 10px;">
+                        <a href="#/account"> Account </a> |
+                        <a href="#/profileListing"> Profiles </a> |
+                        <a href='/' ng-click="logout();"> Logout </a>
+                    </div>
                 </div>
             </div>
         </div>
