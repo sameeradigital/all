@@ -17,6 +17,10 @@ allershare.config(function($routeProvider) {
         templateUrl: 'templates/createProfile.html'
     }).when('/profileDetail/:profileId', {
         templateUrl: 'templates/profileDetail.html'
+    }).when('/profileOverview/:profileId', {
+        templateUrl: 'templates/profileOverview.html'
+    }).when('/account', {
+        templateUrl: 'templates/account.html'
     });
 });
 
@@ -24,7 +28,7 @@ allershare.service('UserService', function($http, $cookieStore) {
     var self = this;
     this.userData = $cookieStore.get('userData');
     this.userProfiles = [];
-    this.isLoggedIn = false;
+    this.isLoggedIn = this.userData ? true : false;
     
     this.onUserChanged = function() {
         $cookieStore.put('userData', self.userData);
@@ -65,10 +69,19 @@ allershare.service('UserService', function($http, $cookieStore) {
         }
     };
     
+    this.getUser = function(cb) {
+         $http.get('/api/users/' +self.userData._id + '/').success(function(data) {
+            self.userData = data;
+            cb(true, data);
+        }).error(function(data) {
+            cb(false, data);
+        });
+    };
+    
     this.getProfile = function(profileId, cb) {
         for (var i=0; i < self.userProfiles.length; i++) {
             if (self.userProfiles[i]._id === profileId) {
-                return self.userProfiles[i];
+                cb(true, self.userProfiles[i]);
             }
         }
         $http.get('/api/users/' + self.userData._id + '/profiles/' + profileId).success(function(data) {
@@ -179,7 +192,7 @@ allershare.controller('ProfileListingController', function($scope, $location, Us
     };
     
     $scope.viewProfile = function(profile) {
-        $location.path('/profileDetail/' + profile._id);
+        $location.path('/profileOverview/' + profile._id);
     };
     
     $scope.loadUserProfiles();
@@ -309,4 +322,48 @@ allershare.controller('ProfileDetailController', function($scope, $routeParams, 
     };
     
     $scope.loadUserProfile();
+});
+
+allershare.controller('AccountController', function($scope, UserService) {
+    $scope.isEnabled = true;
+    $scope.statusMessage = null;
+    $scope.user = null;
+    
+    $scope.loadUser = function() {
+        $scope.statusMessage = null;
+        $scope.isEnabled = false;
+        UserService.getUser(function(isSuccess, data) {
+            if (isSuccess) {
+                $scope.user = data;
+            }
+            else {
+                $scope.statusMessage = data;
+            }
+            $scope.isEnabled = true;
+        });
+    };
+    
+    $scope.loadUser();
+});
+
+allershare.controller('ProfileOverviewController', function($scope, $routeParams, UserService) {
+    $scope.isEnabled = true;
+    $scope.statusMessage = null;
+    $scope.profile = null;
+    
+    $scope.loadProfile = function() {
+        $scope.statusMessage = null;
+        $scope.isEnabled = false;
+        UserService.getProfile($routeParams.profileId, function(isSuccess, data) {
+            if (isSuccess) {
+                $scope.profile = data;
+            }
+            else {
+                $scope.statusMessage = data;
+            }
+            $scope.isEnabled = true;
+        });
+    };
+    
+    $scope.loadUser();
 });

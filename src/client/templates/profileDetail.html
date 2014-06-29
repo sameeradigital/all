@@ -1,266 +1,470 @@
 <div ng-include="'templates/header.html'"> </div>	
 <div ng-include="'templates/lowerHeader.html'"> </div>
 
-<div id="user_profile" ng-controller="ProfileDetailController">
-   	  <div id="middle-left">
-		<h3>Robert Azar</h3>
-		<div id="tabs">
-		  <ul>
-			<li><a href="#tabs-1"><img src="images/create_profile.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Profile Details</a></li>
-			<li><a href="#tabs-2"><img src="images/tab 2.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Allergies & Intolerances</a></li>
-			<li><a href="#tabs-3"><img src="images/tab 3.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Dietary Requirements</a></li>
-			<li><a href="#tabs-4"><img src="images/tab 4.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Profile Summary</a></li>
-		  </ul>
-		  <div id="tabs-1">
-			<section class="registerp">
-                  <h1></h1>
-                  <form method="post" action="profile_details.html">
-                  <div class="reg_section personal_info">
-                  <div class="reg">
-                  <label>Full Name :</label><label>{{ profile.details.name }}</label></div>
-                  <div class="reg">
-                  <label>Address :</label><label>{{ profile.details.address }}</label></div>
-                  <div class="reg">
-                  <label>Date Of Birth :</label><label>{{ profile.details.dateOfBirth }}</label></div>
-                  <div class="reg">
-                  <label>Telephone No. :</label><label>{{ profile.details.telephone }}</label></div>
-                  <div class="reg">
-                  <label>Mobile No. :</label><label>{{ profile.details.mobile }}</label></div>
-                   <div class="reg">
-                  <label>E-mail :</label><label>{{ profile.details.email }}</label></div>
-                  <div class="reg">
-                  <label>Bloodtype :</label><label>{{ profile.details.bloodType }}</label></div>
-                  <div class="reg">
-                  <label>Ethnicity :</label><label>{{ profile.details.Ethnicity }}</label></div>
-                  <div class="reg">
-                 <label>NHS Number :</label><label>{{ profile.details.nhsNumber }}</label>  </div>
-                 <div class="reg">
-                 <label>Medical Conditions :</label><label>{{ profile.details.medicalConditions }}</label>
-                 </div>
-                 <div class="reg">
-                <label>Medical Requirements :</label><label>{{ profile.details.medicalRequirements }}</label>
-                </textarea></div>
-                <div class="reg">
-                  <label>Medical Implants :</label><label>{{ profile.details.medicalImplants }}<br />
-                  </label>
-                  </div>
-               <br/>
-              <h3>&nbsp;</h3>
-                  <h3>&nbsp;</h3>
-                  <h3>Emergency Contact Details -1</h3><br/>
-                <div class="reg">
-                   <label>Name</label> <label>{{ profile.details.emergencyContactDetails1.name }}</label> <div id="error"></div>
-                   </div><br/>
-                   
-                   <div class="reg">
-                   <label>Address</label><label>{{ profile.details.emergencyContactDetails1.address }}</label><div id="error"></div>
-                   </div><br/>
-                   
-                   <div class="reg">
-                   <label>Telephone No.</label><label>{{ profile.details.emergencyContactDetails1.telephone }}</label></div><br/>
-                   
-                   <div class="reg">
-                   <label>Mobile No.</label><label>{{ profile.details.emergencyContactDetails1.mobile }}</label></div><br/>
-                   
-                   <div class="reg">
-                   <label>E-mail</label><label>{{ profile.details.emergencyContactDetails1.email }}</label>
-                  </div>
-                  
-                   <h3>&nbsp;</h3>
-                  <h3>&nbsp;</h3>
-                  <h3>Emergency Contact Details -2</h3><br/>
-                <div class="reg">
-                   <label>Name</label> <label>{{ profile.details.emergencyContactDetails2.name }}</label> <div id="error"></div>
-                   </div><br/>
-                   
-                   <div class="reg">
-                   <label>Address</label><label>{{ profile.details.emergencyContactDetails2.address }}</label><div id="error"></div>
-                   </div><br/>
-                   
-                   <div class="reg">
-                   <label>Telephone No.</label><label>{{ profile.details.emergencyContactDetails2.telephone }}</label></div><br/>
-                   
-                   <div class="reg">
-                   <label>Mobile No.</label><label>{{ profile.details.emergencyContactDetails1.mobile }}</label></div><br/>
-                   
-                   <div class="reg">
-                   <label>E-mail</label><label>{{ profile.details.emergencyContactDetails2.email }}</label>
-                  </div>
-                  
-                  
-               
-                  </div>
-                  <div class="clear"></div>
-                 
-                   <p class="submit">
-                   <a href="profile_overview.htm"><input type="button" name="" value="Profile Overview" class="button"/></a>
-                   
-                  </p>
-                  </form>
-            </section>
-		  </div>
-		  <div id="tabs-2">
-			<section class="register2">
-                  <h3>Food Allergies</h3>
+<div id="user_profile" ng-controller="ProfileDetailController" style="height: 4500px;">
+    <div id="middle-left">
+        <h3>Robert Azar</h3>
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1"><img src="images/create_profile.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Profile Details</a></li>
+                <li><a href="#tabs-2"><img src="images/tab 2.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Allergies & Intolerances</a></li>
+                <li><a href="#tabs-3"><img src="images/tab 3.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Dietary Requirements</a></li>
+                <li><a href="#tabs-4"><img src="images/tab 4.png" alt="crtpfl" style="width:20px; height:20px; margin-right:10px;" />Profile Summary</a></li>
+            </ul>
+            <div id="tabs-1">
+                <section class="registerp">
+                    <form method="post" action="profile_details.html">
+                        <div class="reg_section personal_info">
+                            <div class="reg">
+                                <label>Full Name :</label><label>{{ profile.details.name }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>Address :</label><label>{{ profile.details.address }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>Date Of Birth :</label><label>{{ profile.details.dateOfBirth }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>Telephone No. :</label><label>{{ profile.details.telephone }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>Mobile No. :</label><label>{{ profile.details.mobile }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>E-mail :</label><label>{{ profile.details.email }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>Blood type :</label><label>{{ profile.details.bloodType }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>Ethnicity :</label><label>{{ profile.details.Ethnicity }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>NHS Number :</label><label>{{ profile.details.nhsNumber }}</label>  
+                            </div>
+                            <div class="reg">
+                                <label>Medical Conditions :</label><label>{{ profile.details.medicalConditions }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>Medical Requirements :</label><label>{{ profile.details.medicalRequirements }}</label>
+                            </div>
+                            <div class="reg">
+                                <label>Medical Implants :</label><label>{{ profile.details.medicalImplants }} </label>
+                            </div>
+                            <br/>
+                            <h3>&nbsp;</h3>
+                            <h3>&nbsp;</h3>
+                            <h3>Emergency Contact Details -1</h3>
+                            <br/>
+                            <div class="reg">
+                                <label>Name</label> <label>{{ profile.details.emergencyContactDetails1.name }}</label>
+                            </div>
+                            <br/>
+                            <div class="reg">
+                                <label>Address</label><label>{{ profile.details.emergencyContactDetails1.address }}</label>
+                            </div>
+                            <br/>
+                            <div class="reg">
+                                <label>Telephone No.</label><label>{{ profile.details.emergencyContactDetails1.telephone }}</label>
+                            </div>
+                            <br/>
+                            <div class="reg">
+                                <label>Mobile No.</label><label>{{ profile.details.emergencyContactDetails1.mobile }}</label>
+                            </div>
+                            <br/>
+                            <div class="reg">
+                                <label>E-mail</label><label>{{ profile.details.emergencyContactDetails1.email }}</label>
+                            </div>
+                            <h3>&nbsp;</h3>
+                            <h3>&nbsp;</h3>
+                            <h3>Emergency Contact Details -2</h3><br/>
+                            <div class="reg">
+                                <label>Name</label> <label>{{ profile.details.emergencyContactDetails2.name }}</label> 
+                            </div>
+                            <br/>
+                            <div class="reg">
+                                <label>Address</label><label>{{ profile.details.emergencyContactDetails2.address }}</label>
+                            </div>
+                            <br/>
+                            <div class="reg">
+                                <label>Telephone No.</label><label>{{ profile.details.emergencyContactDetails2.telephone }}</label>
+                            </div>
+                            <br/>
+                            <div class="reg">
+                                <label>Mobile No.</label><label>{{ profile.details.emergencyContactDetails1.mobile }}</label>
+                            </div>
+                            <br/>
+                            <div class="reg">
+                                <label>E-mail</label><label>{{ profile.details.emergencyContactDetails2.email }}</label>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <p class="submit">
+                            <a href="profile_overview.htm"><input type="button" name="" value="Profile Overview" class="button"/></a>
+                        </p>
+                    </form>
+                </section>
+            </div>
+            <div id="tabs-2">
+                <section class="register2">
+                    <h3>Food Allergies</h3>
+                    <div class="reg_section personal_info">
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.cerealsContainingGluten">
+                            <label> Cereals containing gluten and products</label>
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.shellfishCrustaceans">
+                            <label> Shellfish or Crustaceans and products</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.eggAndProducts">
+                            <label> Egg and products </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.fishOrSeafood">
+                            <label> Fish or Seafood </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.milkAndProducts">
+                            <label> Milk and products </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.nutsAndProducts">
+                            <label> Nuts and products </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.celeryAndProducts">
+                            <label> Celery and products </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.mustardAndProducts">
+                            <label> Mustard and products </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.sesemeAndProducts">
+                            <label> Celery and products </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.sulphurDioxideAndSulphites">
+                            <label> Sulphur dioxide and sulphites </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.lupinAndProducts">
+                            <label> Lupin and products </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.molluscsAndProducts">
+                            <label> Molluscs and products </label> 
+                        </div>
+                        <div class="clear"></div>
+                        <br/>
+                        <h3>Others</h3>
+                        <br/>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.fruitOrVegetables">
+                            <label> Fruit or vegetables</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.oralAllergyOrPollenFoodSyndrome">
+                            <label> Oral allergy or pollen food syndrome </label> 
+                         </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.foodAllergies.alcoholAllergy">
+                            <label> Alcohol allergy </label> 
+                         </div>
+                        <div class="clear"></div>
+                        <br/>
+                        <h3>Food Intolerances</h3><br/>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.beefAndDerivatives">
+                            <label> Beef and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.chickenAndDervatives">
+                            <label>Chicken and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.lambMuttonAndDerivatives">
+                            <label>Lamb mutton and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.porkDerivatives">
+                            <label> Pork and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.otherAnimalProductsAndDerivatives">
+                            <label> Other animal products and derivatives </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.rennet">
+                            <label> Rennet </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.gelatin">
+                            <label> Gelatin </label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.oilsOfSeafood">
+                            <label> Oils of seafood</label> 
+                        </div>
+                        <br/>
 
-                  <div class="reg_section personal_info">
-                  <div class="reg">
-                    <label> Cereals containing gluten and products</label></div>
-                  <div class="reg">
-                    <label> Shellfish or Crustaceans and products</label> </div>
-                 <div class="clear"></div><br/>
-                 <h3>Others</h3><br/>
-                 <div class="reg">
-                 <label>  Fruit or Vegetables</label> </div>
-                 <div class="clear"></div><br/>
-                 <h3>Food Intolerances</h3><br/>
-                 <div class="reg">
-                 <label> Beef/ Derivatives</label> </div>
-                    
-                    <div class="reg">
-                    <label>Chicken/ Derivatives</label> </div>
-                    
-                   
-                    
-                    <div class="reg">
-                    <label> Pork/ Derivatives</label> </div>
-                   
-                    
-                    <div class="reg">
-                    <label> Oils of Seafood</label> </div>
-                    
-                     <div class="clear"></div><br/>
-                    <h3>Other Nuts/Seeds</h3> <label> Nut oils/ Derivatives</label><br/>
-                    
-                     <div class="clear"></div><br/>
-                    <h3>Botanical</h3><br/>
-                    <div class="reg">
-                     <label>Garlic/ Derivatives</label> </div>
-                     
-                     
-                     
-                     <div class="reg">
-                    <label>Maize/ Derivatives</label> </div>
-                    
-                    <div class="reg">
-                    <label>Leguminous Plants / pulses</label> </div>
-                    
-                    <div class="reg">
-                    <label>Coriander</label> </div>
-                    
-                   
-                     <div class="clear"></div><br/>
-                     <h3>Flavourings</h3><br/>
-                    <div class="reg">
- 
-                     <div class="reg">
-                    <label>Quinine</label> </div>
-                    
-                    <div class="reg">
-                    <label>Malt Extract</label> </div>
-                    
-                    <div class="reg">
-                    <label>Emulsifiers</label> </div>
-                    
-                    <div class="reg">
-                    <label>Maltodextrin</label> </div>
-                    
-                    <div class="reg">
-                    <label>Enzymes (including those used during processing)</label> </div><br/>
-                     <div class="clear"></div>
-                     <h3>Colours</h3><label> Natural colours</label><br/><br/>
-                    <div class="reg">
-                     
-                    
-                     <div class="clear"></div>
-                     <h3>Preservatives and Antioxidants</h3><label>Sulphites</label><br/>
-                    <div class="reg">
-                    
-                    
-                     <div class="clear"></div><br/>
-                     <h3>Sugars and Sweeteners</h3>
-                    <div class="reg">
-                     <label> Added Sugar</label> </div>
-                     
-                     <div class="reg">
-                   
-                    
-                     <div class="clear"></div><br/>
-                     <h3>Food Intolerances</h3>
-                    <div class="reg">
-                     <label>Allergic rhinitis (hay fever) which affects the nose and                       eyes</label> </div>
-                    
-                    
-                     <div class="clear"></div><br/>
-                    <h3>Skin Allergies</h3>
-                    <div class="reg">
-                     <label>Atopic Eczema</label> </div>
-                     
-                     
-                    
-                     <div class="clear"></div><br/>
-                    <h3>Animal & Insect Allergies</h3>
-                    <div class="reg">
-                     <label>Dog</label> </div>
-                     
-                     
-                    
-                     <div class="clear"></div><br/>
-                     <h3>Chemical Allergies</h3>
-                    <div class="reg">
-                     <label>Manual text Field</label> </div>
-                     
-                      <div class="clear"></div><br/>
-                      <h3>Drug Allergies</h3>
-                    <div class="reg">
-                     <label>Allergic Conjunctivitis (Pink Eye)</label> </div>
-                    
-                    
-                    
-                  </div>
-                  <div class="clear"></div>
-                  
-                 <p class="submit">
-                   <a href="profile_overview.htm"><input type="button" name="" value="Profile Overview" class="button"/></a>
-                   
-                  </p>
-                   <p class="submit">&nbsp;</p>
-                  </form>
-            </section>
-		  </div>
-		  <div id="tabs-3">
-			<section class="register2">
-               <h1></h1>
-                  <form method="post" action="registration.php">
-                  <div class="reg_section personal_info">
-                  
-                  <div class="reg">
-                  <label>Vegetarians</label>
-                  </div><br/>
-               
-                  <div class="reg">
-                  <label>Kosher Diet</label>
-                  </div><br/>
-                 <div class="reg">
-                  <label> Halal_diet</label>
-                  </div><br/>
-                  <div class="reg">
-                  <label>Coeliacs</label></div><br/>
-                  </div>
-                  <div class="clear"></div>
-                  <p class="submit">
-                   <a href="profile_overview.htm"><input type="button" name="" value="Profile Overview" class="button"/></a>
-                   
-                  </p>
-                  </form>
-          </section>
-		  </div>
-		  <div id="tabs-4">
-		  	<p class="submit">
-                 <input type="button" name="" value="Save" class="button1"/></a></p>
-		  </div>
-		</div><!--end tebs-->
-			<div class="clear"></div>       
+                        <h3>Other suts/seeds</h3> 
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.nutOilsAndDerivatives">
+                            <label> Nut oils and derivatives</label>
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.seedsAndProducts">
+                            <label> Seeds and products </label>
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.seedDerivatives">
+                            <label> Seed derivatives </label>
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.seedOilOrOtherVegetableOils">
+                            <label> Seed oil or other vegetable oils </label>
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.coconutsAndDerivatives">
+                            <label> Coconuts and derivatives </label>
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.poppySeeds">
+                            <label> Poppy seeds </label>
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.allergies.cottonSeeds">
+                            <label> Cotton seeds </label>
+                        </div>
+                        <div class="clear"></div>
+                        <br/>
+                        <h3>Botanical</h3>
+                        <br/>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.garlicAndDerivatives">
+                            <label>Garlic and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.onionAndDerivatives">
+                            <label>Onion and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.cinnamonAndExtract">
+                            <label>Cinnamon and extracts</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.umberlliferaeAndDerivatives">
+                            <label>Umberlliferae and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.vegetablesAndDerivatives">
+                            <label>Vegetables and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.fruitAndDerivatives">
+                            <label>Fruit and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.cocoaAndDerivatives">
+                            <label>Cocoa and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.potatoAndDerivatives">
+                            <label>Potato and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.maizeAndDerivatives">
+                            <label>Maize and derivatives</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.leguminousPlants">
+                            <label>Leguminous plants</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.coriander">
+                            <label>Coriander</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.vanila">
+                            <label>Vanilla</label> 
+                        </div>
+                        <div class="reg" ng-show="profile.allergiesAndIntolerances.botanical.mushroom">
+                            <label>Mushroom</label> 
+                        </div>
+                        <br/>
+                        <h3>Flavourings</h3>
+                        <br/>
+                        <div class="reg">
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.naturalFlavouringSubstances">
+                                <label>Natural flavouring substances</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.naturallyIdenticalFlavouringSubstances">
+                                <label>Naturally identical flavouring substances</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.artificialFlavouringSubstances">
+                                <label>Artificial flavouring substances</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.flavouringPreparations">
+                                <label>Flavouring preparations</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.smokeFlavourings">
+                                <label>Smoke flavourings</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.diAcetyl">
+                                <label>diAcetyl</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.biologicallyActivePrinciples">
+                                <label>Biologically active principles</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.msg">
+                                <label>MSG</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.biologicallyActivePrinciples">
+                                <label>Biologically active principles</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.naturallyOccuringGlutamates">
+                                <label>Naturally occurring glutamate</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.nucleotides">
+                                <label>Nucleotides</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.yeastAndExtract">
+                                <label>Yeast and extracts</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.hvp">
+                                <label>HVP</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.tvp">
+                                <label>TVP</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.otherAddedFlavourEnhancers">
+                                <label>Other added flavour enhancers</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.alcohols">
+                                <label>Alcohols</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.organicAcids">
+                                <label>Organic acids</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.caffeine">
+                                <label>Caffeine</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.quinine">
+                                <label>Quinine</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.maltExtract">
+                                <label>Malt extract</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.emulsifiers">
+                                <label>Emulsifiers</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.maltodextrin">
+                                <label>Maltodextrin</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.flavourings.enzymes">
+                                <label>Enzymes</label> 
+                            </div>
+                            <div class="clear"></div>
+                            <h3>Colours</h3>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.colours.naturalColours">
+                                <label> Natural colours </label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.colours.artificialColours">
+                                <label> Artificial colours </label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.colours.artificialColourFromAzoDyes">
+                                <label> Artificial colours from Azo dyes</label> 
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.colours.caramel">
+                                <label> Caramel </label> 
+                            </div>
+                            <br/>
+                            <h3>Preservatives and Antioxidants</h3>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.preservativesAndAntioxidants.sulphites">
+                                <label>Sulphites</label>
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.preservativesAndAntioxidants.suphurDioxide">
+                                <label>Sulphur dioxide</label>
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.preservativesAndAntioxidants.ethyleneOxide">
+                                <label>Ethylene oxide</label>
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.preservativesAndAntioxidants.benzoates">
+                                <label>Benzoates</label>
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.preservativesAndAntioxidants.nitritesAndNitrates">
+                                <label>Nitrites and nitrates</label>
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.preservativesAndAntioxidants.bha">
+                                <label>BHA</label>
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.preservativesAndAntioxidants.bht">
+                                <label>BHT</label>
+                            </div>
+                            <div class="reg" ng-show="profile.allergiesAndIntolerances.preservativesAndAntioxidants.otherAntioxidants">
+                                <label>Other antioxidants</label>
+                            </div>
+                            <br/>
+                            <div class="reg">
+                                <div class="clear"></div>
+                                <br/>
+                                <h3>Sugars and Sweeteners</h3>
+                                <div class="reg" ng-show="profile.allergiesAndIntolerances.sugarsAndSweetners.addedSugar">
+                                    <label> Added Sugar</label> 
+                                </div>
+                                <div class="reg" ng-show="profile.allergiesAndIntolerances.sugarsAndSweetners.aspartame">
+                                    <label> Aspartame </label> 
+                                </div>
+                                <div class="reg" ng-show="profile.allergiesAndIntolerances.sugarsAndSweetners.otherArtificialSweetners">
+                                    <label> Other artificial sweeteners </label> 
+                                </div>
+                                <div class="reg" ng-show="profile.allergiesAndIntolerances.sugarsAndSweetners.dextrose">
+                                    <label> Dextrose </label> 
+                                </div>
+                                <div class="reg" ng-show="profile.allergiesAndIntolerances.sugarsAndSweetners.fructose">
+                                    <label> Fructose </label> 
+                                </div>
+                                <div class="reg" ng-show="profile.allergiesAndIntolerances.sugarsAndSweetners.glucose">
+                                    <label> Glucose </label> 
+                                </div>
+                                <div class="reg" ng-show="profile.allergiesAndIntolerances.sugarsAndSweetners.polyols">
+                                    <label> Polyols </label> 
+                                </div>
+                                <div class="reg" ng-show="profile.allergiesAndIntolerances.sugarsAndSweetners.sucrose">
+                                    <label> Sucrose </label> 
+                                </div>
+                                <div class="reg" ng-show="profile.allergiesAndIntolerances.sugarsAndSweetners.honey">
+                                    <label> Honey </label> 
+                                </div>
+                                <div class="reg">
+                                    <div class="clear"></div>
+                                    <br/>
+                                    <h3> Respiratory Allergies </h3>
+                                    <div class="reg" ng-show="profile.allergiesAndIntolerances.respiratoryAllergies.hayFever">
+                                        <label>Allergic rhinitis (hay fever)</label> 
+                                    </div>
+                                    <div class="reg" ng-show="profile.allergiesAndIntolerances.respiratoryAllergies.asthma">
+                                        <label>Asthma</label> 
+                                    </div>
+                                    <div class="reg" ng-show="profile.allergiesAndIntolerances.respiratoryAllergies.eczemaOrUrticaria">
+                                        <label>Eczema or urticaria</label> 
+                                    </div>
+                                    <div class="clear"></div>
+                                    <br/>
+                                    <h3>Skin Allergies</h3>
+                                    <div class="reg">
+                                        <div class="reg" ng-show="profile.allergiesAndIntolerances.skinAllergies.atopicEczema">
+                                            <label>Eczema</label> 
+                                        </div>
+                                        <div class="reg" ng-show="profile.allergiesAndIntolerances.skinAllergies.rubberLatex">
+                                            <label>Rubber latex</label> 
+                                        </div>
+                                        </div>
+                                        <div class="reg" ng-show="profile.allergiesAndIntolerances.skinAllergies.cosmetics">
+                                            <label>Cosmetics</label> 
+                                        </div>
+                                        <div class="reg" ng-show="profile.allergiesAndIntolerances.skinAllergies.hairDye">
+                                            <label>Hair dye</label> 
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <br/>
+                                    <h3>Animal & Insect Allergies</h3>
+                                    <div class="reg" ng-show="profile.allergiesAndIntolerances.animalAndInsectAllergies.dog">
+                                        <label>Dog</label> 
+                                    </div>
+                                    <div class="reg" ng-show="profile.allergiesAndIntolerances.animalAndInsectAllergies.cat">
+                                        <label>Cat</label> 
+                                    </div>
+                                    <div class="reg" ng-show="profile.allergiesAndIntolerances.animalAndInsectAllergies.insectStings">
+                                        <label>Insect stings</label> 
+                                    </div>
+                                    <div class="clear"></div>
+                                    <br/>
+                                    <div class="clear"></div>
+                                    <br/>
+                                    <h3>Drug Allergies</h3>
+                                    <div class="reg" ng-show="profile.allergiesAndIntolerances.drugAllergies.aspirinSalicylate">
+                                        <label>Aspirin salicylate</label> 
+                                    </div>
+                                    <div class="reg" ng-show="profile.allergiesAndIntolerances.drugAllergies.penicillin">
+                                        <label>Penicillin</label> 
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <p class="submit">
+                                    <a href="profile_overview.htm"><input type="button" name="" value="Profile Overview" class="button"/></a>
+                                </p>
+                                <p class="submit">&nbsp;</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-   	  <div class="clear"></div><!--end recoardtable-->
+        <div class="clear"></div>       
+    </div>
+</div>
+<div class="clear"></div>
 <div ng-include="'templates/footer.html'"> </div>

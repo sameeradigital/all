@@ -1,0 +1,42 @@
+<div ng-include="'templates/header.html'"> </div>	
+<div ng-include="'templates/lowerHeader.html'"> </div>
+
+<div id="user_profile" style="height: 500px;" ng-controller="AccountController">
+    <div id="middle-left">
+        <h3>{{ user.username }}</h3>
+        <section class="register1">
+            <h1></h1>
+            <form method="post" action="#">
+                <div class="reg_section personal_info">
+                    <div class="reg">
+                        <label>Full Name</label><input type="text" name="fName" value="" placeholder="Full Name" ng-model="user.name">
+                    </div>
+                    <div class="reg">
+                        <label>Address</label><input type="text" name="add" value="" placeholder="Address" ng-model="user.address">
+                    </div>
+                    <div class="reg">
+                        <label>Telephone No.</label><input type="text" name="dob" value="" placeholder="Telephone No." ng-model="user.telephone">
+                    </div>
+                    <div class="reg">
+                        <label>Mobile Number</label><input type="text" name="Name1" value="" placeholder="Mobile Number" ng-model="user.mobile">
+                     </div>
+                     <div class="reg">
+                        <label>Email</label><input type="text" name="Name1" value="" placeholder="Email address" ng-model="user.email">
+                     </div>
+                </div>
+                <h3>&nbsp;</h3>
+                <h3>&nbsp;</h3>
+                <div class="clear"></div>
+                <p class="submit">
+                    <a href=""><input type="button" name="" value="Save" class="button"/></a>
+                </p>
+                <p class="submit">&nbsp;</p>
+            </form>
+        </section>
+    </div>
+</div>
+<div class="clear"></div></div>
+<div id="middle-right"></div>
+<div class="clear"></div>
+
+<div ng-include="'templates/footer.html'"> </div>

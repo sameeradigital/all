@@ -56,7 +56,7 @@ var ProfileSchema = new mongoose.Schema({
     allergiesAndIntolerances: {
         allergies: {
             beefAndDerivatives: {type: Boolean, reqiured: true, default: false},
-            checkenAndDervatives: {type: Boolean, reqiured: true, default: false},
+            chickenAndDervatives: {type: Boolean, reqiured: true, default: false},
             lambMuttonAndDerivatives: {type: Boolean, reqiured: true, default: false},
             porkDerivatives: {type: Boolean, reqiured: true, default: false},
             otherAnimalProductsAndDerivatives: {type: Boolean, reqiured: true, default: false},
@@ -90,7 +90,7 @@ var ProfileSchema = new mongoose.Schema({
         },
         botanical: {
             garlicAndDerivatives: {type: Boolean, reqiured: true, default: false},
-            oinionAndDerivatives: {type: Boolean, reqiured: true, default: false},
+            onionAndDerivatives: {type: Boolean, reqiured: true, default: false},
             cinnamonAndExtract: {type: Boolean, reqiured: true, default: false},
             umberlliferaeAndDerivatives: {type: Boolean, reqiured: true, default: false},
             vegetablesAndDerivatives: {type: Boolean, reqiured: true, default: false},
@@ -160,7 +160,6 @@ var ProfileSchema = new mongoose.Schema({
         respiratoryAllergies: { 
             hayFever: {type: Boolean, reqiured: true, default: false},
             asthma: {type: Boolean, reqiured: true, default: false},
-            otherArtificialSweetners: {type: Boolean, reqiured: true, default: false},
             eczemaOrUrticaria: {type: Boolean, reqiured: true, default: false}
         },
         skinAllergies: {
@@ -177,7 +176,6 @@ var ProfileSchema = new mongoose.Schema({
         drugAllergies: {
             aspirinSalicylate: {type: Boolean, reqiured: true, default: false},
             penicillin: {type: Boolean, reqiured: true, default: false},
-            manualTextField: {type: Boolean, reqiured: true, default: false}
         },
         miscAllergies: {
             allergicConjunctivitisPinkEye: {type: Boolean, reqiured: true, default: false},
