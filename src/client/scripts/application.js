@@ -39,7 +39,7 @@ allershare.service('UserService', function($http, $cookieStore) {
         else if (!user.email) { cb(false, "Email is required"); }
         else if (!user.password) { cb(false, "Password is required"); }
         else if (!user.confirmPassword) { cb(false, "Confirm password required"); }
-        else if (user.password !== data.confirmPassword) { cb(false, "Passwords do not match"); }
+        else if (user.password !== user.confirmPassword) { cb(false, "Passwords do not match"); }
         else {
             $http.post('/api/users/', {
                 user: user
