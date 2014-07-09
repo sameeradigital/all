@@ -195,7 +195,12 @@ var ProfileSchema = new mongoose.Schema({
     }
 });
 
-var UserSchema = BaseUserSchema.extend({ });
+var UserSchema = BaseUserSchema.extend({ 
+    name: {type: String, required: false},
+	address: {type: String, required: false },
+	telephone: {type: Number, required: false},
+	mobile: {type: Number, required: false},
+});
 
 preSave = function(next) {
     var user = this;

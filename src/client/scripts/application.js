@@ -34,56 +34,53 @@ allershare.service('UserService', function($http, $cookieStore) {
         $cookieStore.put('userData', self.userData);
     };
     
-    this.signUp = function(user, cb) {
-        if (!user.username) { cb(false, "Username is required"); }
-        else if (!user.email) { cb(false, "Email is required"); }
-        else if (!user.password) { cb(false, "Password is required"); }
-        else if (!user.confirmPassword) { cb(false, "Confirm password required"); }
-        else if (user.password !== user.confirmPassword) { cb(false, "Passwords do not match"); }
-        else {
-            $http.post('/api/users/', {
-                user: user
-            }).success(function(data) {
-                cb(true);
-            }).error(function(data) {
-                cb(false, data);
-            });
-        }
+    this.signUp = function(user, cb) {    
+		$http.post('/api/users/', {
+			user: user
+		}).success(function(data) {
+			cb(true);
+		}).error(function(data) {
+			cb(false, data);
+		});
     };
     
     this.login = function(data, cb) {
-        if (!data.username) { cb(false, "Username is required"); }
-        else if (!data.password) { cb(false, "password is required"); }
-        else {
-            $http.post('/api/sessions/', {
-                username: data.username, 
-                password: data.password 
-            }).success(function(data) {
-                self.userData = data;
-                self.isLoggedIn = true;
-                self.onUserChanged();
-                cb(true);
-            }).error(function(data) {
-                cb(false, data);
-            });
-        }
+		$http.post('/api/sessions/', {
+			username: data.username, 
+			password: data.password 
+		}).success(function(data) {
+			self.userData = data;
+			self.isLoggedIn = true;
+			self.onUserChanged();
+			cb(true);
+		}).error(function(data) {
+			cb(false, data);
+		});
     };
     
     this.logout = function() {
         self.userData = null;
         self.userProfiles = null;
         self.isLoggedIn = false;
-        $cookieStore.del('userData');
+        $cookieStore.remove('userData');
     };
     
     this.getUser = function(cb) {
-         $http.get('/api/users/' +self.userData._id + '/').success(function(data) {
+         $http.get('/api/users/' + self.userData._id + '/').success(function(data) {
             self.userData = data;
             cb(true, data);
         }).error(function(data) {
             cb(false, data);
         });
     };
+	
+	this.putUser = function(cb) {
+		$http.get('/api/users/' + self.userData._id + '/', {user: self.userData}).success(function(data) {
+			cb(true, self.userData);
+		}).error(function(data) {
+			cb(false, data);
+		});
+	};
     
     this.getProfile = function(profileId, cb) {
         for (var i=0; i < self.userProfiles.length; i++) {
@@ -135,18 +132,39 @@ allershare.controller('SignUpController', function($scope, UserService) {
     $scope.confirmPassword = null;
     $scope.statusMessage = null;
     $scope.isEnabled = true;
+	
+	$scope.validate = function() {
+		if (!$scope.username) { 
+			$scope.statusMessage = "Username is required";
+		}
+		else if (!$scope.email) { 
+			$scope.statusMessage = "Email is required";
+		}
+		else if (!$scope.password) { 	
+			$scope.statusMessage = "Password is required";
+		}
+		else if (!$scope.confirmPassword) { 
+			$scope.statusMessage = "Confirm password required";
+		}
+		else if ($scope.password !== $scope.confirmPassword) { 
+			$scope.statusMessage = "Passwords do not match";
+		}
+		return true;
+	}
     
     $scope.signUp = function() {
-        $scope.isEnabled = false;
-        UserService.signUp({
-            username: $scope.username, 
-            email: $scope.email,
-            password: $scope.password,
-            confirmPassword: $scope.confirmPassword
-        }, function(isSuccess, responseMessage) {
-            $scope.isEnabled = true;
-            $scope.statusMessage = responseMessage;
-        });
+		if ($scope.validate()) {
+			$scope.isEnabled = false;
+			UserService.signUp({
+				username: $scope.username, 
+				email: $scope.email,
+				password: $scope.password,
+				confirmPassword: $scope.confirmPassword
+			}, function(isSuccess, responseMessage) {
+				$scope.isEnabled = true;
+				$scope.statusMessage = "Success!";
+			});
+		}
     };
 });
 
@@ -160,18 +178,36 @@ allershare.controller('LoginController', function($scope, $location, UserService
     $scope.$watch(UserService.isLoggedIn, function() {
         $scope.isLoggedIn = UserService.isLoggedIn;
     });
+	
+	$scope.validate = function() {
+		if (!$scope.username) { 
+			$scope.statusMessage = "Username is required"; 
+		}
+        else if (!$scope.password) { 
+			$scope.statusMessage = "password is required"; 
+		}
+	};
     
     $scope.login = function() {
         $scope.isEnabled = false;
         UserService.login({
             username: $scope.username,
             password: $scope.password
-        }, function(isSuccess, responseMessage) {
+        }, function(isSuccess, data) {
             isEnabled = true;
-            $scope.statusMessage
             if (isSuccess) {
-                $location.path('/profileListing');
+				if (UserService.userData.address &&
+				    UserService.userData.telephone &&
+					UserService.userData.mobile) {
+					$location.path('/profileListing');
+				}
+				else {
+					$location.path('/account');
+				}
             }
+			else {
+				$scope.statusMessage = data;
+			}
         });
     };
     
@@ -215,7 +251,7 @@ allershare.controller('CreateProfileController', function($scope, $location, Use
     $scope.profile = {};
     $scope.bloodTypes = ['a', 'b', 'ab', 'o'];
     $scope.ethnicities = ['white', 'mixed / multiple ethnic groups', 'asian / asian british', 
-                                 'black / african / caribbean / black british', 'other ethnic group'];
+                          'black / african / caribbean / black british', 'other ethnic group'];
     
     $scope.validate = function() {
         if (!$scope.profile.details) {
@@ -254,6 +290,10 @@ allershare.controller('CreateProfileController', function($scope, $location, Use
             $scope.statusMessage = "Ethnicity is required";
             return false;
         }
+		else if (!$scope.profile.details.emergencyContactDetails1) {
+			$scope.statusMessage = "Emergency contact details - 1 is required";
+            return false;
+		}
         else if (!$scope.profile.details.emergencyContactDetails1.name) {
             $scope.statusMessage = "Name is required for emergency contact details - 1";
             return false;
@@ -272,6 +312,10 @@ allershare.controller('CreateProfileController', function($scope, $location, Use
         }
         else if (!$scope.profile.details.emergencyContactDetails1.email) {
             $scope.statusMessage = "Email is required for emergency contact details - 1";
+            return false;
+        }
+		else if (!$scope.profile.details.emergencyContactDetails2) {
+            $scope.statusMessage = "Emergency contact details - 2 is required";
             return false;
         }
         else if (!$scope.profile.details.emergencyContactDetails2.name) {
@@ -338,14 +382,38 @@ allershare.controller('ProfileDetailController', function($scope, $routeParams, 
 allershare.controller('AccountController', function($scope, UserService) {
     $scope.isEnabled = true;
     $scope.statusMessage = null;
-    $scope.user = null;
+    $scope.userData = null;
+	
+	$scope.validate = function() {
+	    $scope.statusMessage = null;
+		if (!$scope.userData) {
+			$scope.statusMessage = "User is null";
+			return false;
+		}
+		else if (!$scope.userData.name) {
+			$scope.statusMessage = "Name is required";
+			return false;
+		}
+		else if (!$scope.userData.address) {
+			$scope.statusMessage = "Address is required";
+			return false;
+		}
+		else if (!$scope.userData.telephone) {
+			$scope.statusMessage = "Telephone is required";
+			return false;
+		}
+		else if (!$scope.userData.mobile) {
+			$scope.statusMessage = "Mobile is required";
+			return false;
+		}
+		return true;
+	};
     
     $scope.loadUser = function() {
-        $scope.statusMessage = null;
         $scope.isEnabled = false;
         UserService.getUser(function(isSuccess, data) {
             if (isSuccess) {
-                $scope.user = data;
+                $scope.userData = JSON.parse(JSON.stringify(UserService.userData));
             }
             else {
                 $scope.statusMessage = data;
@@ -353,6 +421,21 @@ allershare.controller('AccountController', function($scope, UserService) {
             $scope.isEnabled = true;
         });
     };
+	
+	$scope.save = function() {
+		if ($scope.validate()) {
+			UserService.userData = $scope.userData;
+			UserService.putUser(function(isSuccess, data) {
+				if (isSuccess) {
+					$scope.statusMessage = "Account updated";
+				}
+				else {
+					$scope.statusMessage = data;
+				}
+				$scope.isEnabled = true;
+			});
+		}
+	};
     
     $scope.loadUser();
 });

@@ -6,31 +6,32 @@
         <h3>{{ user.username }}</h3>
         <section class="register1">
             <h1></h1>
-            <form method="post" action="#">
+            <form>
                 <div class="reg_section personal_info">
                     <div class="reg">
-                        <label>Full Name</label><input type="text" name="fName" value="" placeholder="Full Name" ng-model="user.name">
+                        <label>Full Name</label><input type="text" name="fName" value="" placeholder="Full Name" ng-model="userData.name">
                     </div>
                     <div class="reg">
-                        <label>Address</label><input type="text" name="add" value="" placeholder="Address" ng-model="user.address">
+                        <label>Address</label><input type="text" name="add" value="" placeholder="Address" ng-model="userData.address">
                     </div>
                     <div class="reg">
-                        <label>Telephone No.</label><input type="text" name="dob" value="" placeholder="Telephone No." ng-model="user.telephone">
+                        <label>Telephone No.</label><input type="text" name="dob" value="" placeholder="Telephone No." ng-model="userData.telephone">
                     </div>
                     <div class="reg">
-                        <label>Mobile Number</label><input type="text" name="Name1" value="" placeholder="Mobile Number" ng-model="user.mobile">
+                        <label>Mobile Number</label><input type="text" name="Name1" value="" placeholder="Mobile Number" ng-model="userData.mobile">
                      </div>
                      <div class="reg">
-                        <label>Email</label><input type="text" name="Name1" value="" placeholder="Email address" ng-model="user.email">
+                        <label>Email</label><input type="text" name="Name1" value="" placeholder="Email address" ng-model="userData.email">
                      </div>
                 </div>
                 <h3>&nbsp;</h3>
                 <h3>&nbsp;</h3>
                 <div class="clear"></div>
                 <p class="submit">
-                    <a href=""><input type="button" name="" value="Save" class="button"/></a>
+                    <a href=""><input type="button" name="" value="Save" class="button" ng-click="save();"/></a>
                 </p>
                 <p class="submit">&nbsp;</p>
+				{{ statusMessage }}
             </form>
         </section>
     </div>
