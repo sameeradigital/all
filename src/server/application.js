@@ -30,5 +30,6 @@ app.get('/api/organisations/:organisationId/', routes.getOrganisation);
 app.put('/api/organisations/:organisationId/', security.authOrganisation, routes.putOrganisation);
 app.get('/api/organisations/:organisationId/profiles', security.authOrganisation, routes.getOrganisationProfiles);
 app.get('/api/newsAlerts/', routes.getNewsAlerts);
+app.post('/api/messages/', routes.postMessage);
 
 app.listen(5000);

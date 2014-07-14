@@ -21,6 +21,8 @@ allershare.config(function($routeProvider) {
         templateUrl: 'templates/profileOverview.html'
     }).when('/account', {
         templateUrl: 'templates/account.html'
+    }).when('/completePersonalDetails', {
+        templateUrl: 'templates/completePersonalDetails.html'
     });
 });
 
@@ -118,11 +120,21 @@ allershare.service('UserService', function($http, $cookieStore) {
             cb(true);
             self.userProfiles.splice(self.userProfiles.indexOf(profile), 1);
         }).error(function(data) {
-            cb(true, data);
+            cb(false, data);
         });
     };
     
     return this;
+});
+
+allershare.service('ContactService', function($http) {
+    this.sendMessage = function(message, cb) {
+        $http.post('/api/messages/', { message: message }).success(function(data) {
+            cb(true, data);
+        }).error(function(data) {
+            cb(false, data);
+        });
+    };
 });
 
 allershare.controller('SignUpController', function($scope, UserService) {
@@ -202,7 +214,7 @@ allershare.controller('LoginController', function($scope, $location, UserService
 					$location.path('/profileListing');
 				}
 				else {
-					$location.path('/account');
+					$location.path('/completePersonalDetails');
 				}
             }
 			else {
@@ -460,4 +472,49 @@ allershare.controller('ProfileOverviewController', function($scope, $routeParams
     };
     
     $scope.loadProfile();
+});
+
+allershare.controller('ContactController', function($scope, ContactService) {   
+    $scope.validate = function() {
+        $scope.statusMessage = null;
+        if (!$scope.message) {
+            $scope.statusMessage = "Message does not exist";
+            return false;
+        }
+        else if (!$scope.message.name) {
+            $scope.statusMessage = "Name is required";
+            return false;
+        }
+        else if (!$scope.message.email) {
+            $scope.statusMessage = "Email is required";
+            return false;
+        }
+        else if (!$scope.message.subject) {
+            $scope.statusMessage = "Subject is required";
+            return false;
+        }
+        else if (!$scope.message.message) {
+             $scope.statusMessage = "Message is required";
+             return false;
+        }
+        return true;
+    };
+    
+    $scope.sendMessage = function() {
+        if ($scope.validate()) {
+            $scope.isEnabled = false;
+            ContactService.sendMessage($scope.message, function(isSuccess, data) {
+                isSuccess ? $scope.statusMessage = "Success" : $scope.statusMessage = data;
+                $scope.isEnabled = true;
+            });
+        }
+    };
+    
+    $scope.reset = function() {
+        $scope.isEnabled = true;
+        $scope.statusMessage = null;
+        $scope.message = {};
+    };
+    
+    $scope.reset();
 });

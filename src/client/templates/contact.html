@@ -6,22 +6,23 @@
         <div ng-include="'templates/signUp.html'"> </div>
     	<div id="middle-left">
         	<h2>Contact Us</h2>
-            <section class="register1">
+            <section class="register1" ng-controller="ContactController">
                   <h1></h1>
-                  <form method="post" action="contacts.php">
+                  <form ng-submit="sendMessage();">
                       <div class="reg_section personal_info">
-                      <label>Name</label><input type="text" name="Name" value="" placeholder="Name">
-                      <label>E-mail</label><input type="text" name="email" value="" placeholder="E-mail">
-                      <label>Subject</label><input type="text" name="Subject" value="" placeholder="Subject">
+                      <label>Name</label><input type="text" name="Name" placeholder="Name" ng-model="message.name">
+                      <label>E-mail</label><input type="text" name="email" placeholder="E-mail" ng-model="message.email">
+                      <label>Subject</label><input type="text" name="Subject" placeholder="Subject" ng-model="message.subject">
                       <label>Message</label>
-                      <textarea name="textarea"  placeholder="Message"></textarea>
+                      <textarea name="textarea"  placeholder="Message" ng-model="message.message"></textarea>
                       </div>
                       <p class="submit">
-                        <input type="submit" name="commit2" value="Send" />
-                        <input type="submit" name="commit3" value="Reset" />
+                        <input type="submit" name="commit2" value="Send" ng-click="sendMessage();"/>
+                        <input type="submit" name="commit3" value="Reset" ng-click="reset();"/>
                       </p>
                        <p class="submit">&nbsp;</p>
                   </form>
+                  {{statusMessage}}
             </section>
         </div>
         <div class="clear"></div>

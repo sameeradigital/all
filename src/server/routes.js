@@ -173,3 +173,10 @@ exports.getNewsAlerts = function(req, resp) {
 		err ? resp.status(500).send(err) : resp.send(data);
 	});
 };
+
+exports.postMessage = function(req, resp) {
+    var message = new models.Message(req.body.message);
+    message.save(function(err, result) {
+        err ? resp.status(500).send(err) : resp.send(result);
+    });
+};

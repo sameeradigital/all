@@ -10,6 +10,13 @@ var NewsAlertSchema = mongoose.Schema({
     body: { type: String, required: true }
 });
 
+var MessageSchema = mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    subject: { type: String, required: true },
+    message: { type: String, required: true }
+});
+
 var BaseUserSchema = mongoose.Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
@@ -230,6 +237,7 @@ UserSchema.methods.verifyPassword = verifyPassword;
 OrganisationSchema.methods.verifyPassword = verifyPassword;
 
 exports.NewsAlert = mongoose.model('NewsAlert', NewsAlertSchema);
+exports.Message = mongoose.model('Message', MessageSchema);
 exports.BaseUser = mongoose.model('BaseUser', BaseUserSchema);
 exports.AdminUser = mongoose.model('Admin', AdminSchema);
 exports.Organisation = mongoose.model('Organisation', OrganisationSchema);
